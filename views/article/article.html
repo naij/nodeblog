@@ -1,0 +1,17 @@
+<div class="clearfix">
+    <div class="main">
+        <div class="article-detail">
+            <div class="hd">
+                <h3 class="title"><%= article.title %></h3>
+                <div class="meta">
+                    <span class="date"><i class="iconfont">&#51;</i> <%= article.publishDate %></span>
+                    <span class="tag"><i class="iconfont">&#326;</i> <%= article.tag %></span>
+                </div>
+            </div>
+            <div class="bd markdown-body">
+                <%- article.content %>
+            </div>
+        </div>
+    </div>
+    <div class="side"><%- partial('sidebar') %></div>
+</div>

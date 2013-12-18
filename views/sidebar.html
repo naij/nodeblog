@@ -1,0 +1,32 @@
+<div class="box recent">
+    <div class="hd">
+        <h3 class="title">最新文章</h3>
+    </div>
+    <div class="bd">
+        <ul>
+            <% for (var i = 0, l = recentArticle.length; i < l; i++) { %>
+            <li><a href="/article/<%= recentArticle[i]._id %>" target="_blank"><%= recentArticle[i].title %></a></li>
+            <% } %>
+        </ul>
+    </div>
+</div>
+
+<div class="box tag">
+    <div class="hd">
+        <h3 class="title">标签分类</h3>
+    </div>
+    <div class="bd">
+        <ul class="taglist ks-clear">
+            <li class="item"><span class="q-icon"></span></li>
+            <li class="item"><a href="/">全部</a></li>
+            <li class="item"><a href="/tag/javascript"><nobr>javascript</nobr></a></li>
+            <li class="item"><a href="/tag/nodejs"><nobr>nodejs</nobr></a></li>
+            <li class="item"><a href="/tag/css"><nobr>css</nobr></a></li>
+            <li class="item"><a href="/tag/less"><nobr>less</nobr></a></li>
+            <li class="item"><a href="/tag/github"><nobr>github</nobr></a></li>
+            <li class="item"><a href="/tag/html5"><nobr>html5</nobr></a></li>
+            <li class="item"><a href="/tag/markdown"><nobr>markdown</nobr></a></li>
+            <li class="item"><a href="/tag/mongdb"><nobr>mongdb</nobr></a></li>
+        </ul>
+    </div>
+</div>
