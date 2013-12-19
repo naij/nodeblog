@@ -65,7 +65,7 @@ exports.index = function(req, res, next) {
  * @param  {[type]}   res  [description]
  * @param  {Function} next [description]
  */
-exports.showEdit = function(req, res, next){
+exports.showEdit = function(req, res, next) {
     var articleId = req.params.aid;
 
     if (!req.session.user) {
@@ -77,7 +77,7 @@ exports.showEdit = function(req, res, next){
         return;
     }
 
-    getArticleById(articleId,function(err, doc){
+    getArticleById(articleId, function(err, doc) {
         if (err) {
             next(err);
         }
@@ -94,13 +94,13 @@ exports.showEdit = function(req, res, next){
  * @param  {[type]}   res  [description]
  * @param  {Function} next [description]
  */
-exports.edit = function(req, res, next){
+exports.edit = function(req, res, next) {
     var id = sanitize(req.body.id).trim();
     var title = sanitize(req.body.title).trim();
     var markdownContent = req.body.content;
     var htmlContent = markdown.makeHtml(markdownContent);
 
-    getArticleById(id,function(err, doc){
+    getArticleById(id, function(err, doc) {
         if (err) {
             next(err);
         }
@@ -123,7 +123,7 @@ exports.edit = function(req, res, next){
  * @param  {[type]}   res  [description]
  * @param  {Function} next [description]
  */
-exports.showAdd = function(req, res, next){
+exports.showAdd = function(req, res, next) {
     if (!req.session.user) {
         return res.redirect('home');
     }
@@ -137,7 +137,7 @@ exports.showAdd = function(req, res, next){
  * @param {[type]}   res  [description]
  * @param {Function} next [description]
  */
-exports.add = function(req, res, next){
+exports.add = function(req, res, next) {
     if (!req.session.user) {
         return res.redirect('home');
     }
@@ -166,7 +166,7 @@ exports.add = function(req, res, next){
  * @param  {[type]}   res  [description]
  * @param  {Function} next [description]
  */
-exports.del = function(req, res, next){
+exports.del = function(req, res, next) {
     var articleId = req.params.aid;
 
     if (!req.session.user) {
@@ -178,12 +178,12 @@ exports.del = function(req, res, next){
         return;
     }
 
-    getArticleById(articleId,function(err, doc){
+    getArticleById(articleId, function(err, doc) {
         if (err) {
             next(err);
         }
 
-        doc.remove(function(err){
+        doc.remove(function(err) {
             return res.redirect('home');
         })
     });
@@ -195,24 +195,24 @@ exports.del = function(req, res, next){
  * @param  {[type]}   res  [description]
  * @param  {Function} next [description]
  */
-exports.tag = function(req, res, next){
+exports.tag = function(req, res, next) {
     var tag = req.params.tag;
 
-    var render = function(article, recentArticle){
+    var render = function(article, recentArticle) {
         res.render('index', {
-            article : article,
-            recentArticle : recentArticle
+            article: article,
+            recentArticle: recentArticle
         });
     }
 
     var proxy = EventProxy.create('article', 'recentArticle', render);
 
-    getArticleByTag(tag,function(err, data){
+    getArticleByTag(tag,function(err, data) {
         if (err) {
             next(err);
         }
 
-        for(var i=0;i<data.length;i++){
+        for(var i = 0; i < data.length; i++) {
             tempDate = util.formatDate(data[i].update);
             data[i].publishDate = tempDate;
         }
@@ -220,14 +220,14 @@ exports.tag = function(req, res, next){
         proxy.emit('article',data);
     });
 
-    getFullArticle(function(err, data){
+    getFullArticle(function(err, data) {
         if (err) {
             next(err);
         }
 
         var tempDate = '';
 
-        for(var i=0;i<data.length;i++){
+        for(var i = 0; i < data.length; i++) {
             tempDate = util.formatDate(data[i].update);
             data[i].publishDate = tempDate;
         }
@@ -253,7 +253,7 @@ function getArticleByTag(tag, callback) {
 }
 
 function getFullArticle(callback) {
-    Article.find({},null,{sort:[['update','desc']]},function(err, doc) {
+    Article.find({}, null, {sort:[['update','desc']]}, function(err, doc) {
         if (err) return callback(err);
         callback(null, doc);
     });

@@ -1,8 +1,12 @@
 
 var express = require('express');
 var ejs = require('ejs');
+var fs = require('fs');
+var path = require('path');
 var routes = require('./routes');
 var config = require('./config').config;
+var pidfile = path.join(__dirname, 'app.pid');
+fs.writeFileSync(pidfile, process.pid);
 var app = module.exports = express.createServer();
 
 app.configure(function(){
@@ -52,3 +56,11 @@ app.dynamicHelpers({
 routes(app);
 
 app.listen(3000);
+
+// 退出进程
+process.on('SIGTERM', function() {
+    if (fs.existsSync(pidfile)) {
+        fs.unlinkSync(pidfile);
+    }
+    process.exit(0);
+});

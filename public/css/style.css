@@ -124,7 +124,9 @@ body{
     padding-right: 1em;
 }
 #header {
-    background: #000;
+    background-color: #000;
+    background-image: url(/img/noisy-black.jpg);
+    background-repeat: repeat-x;
 }
 #header .header-bd {
     height: 70px;
@@ -133,15 +135,19 @@ body{
 }
 #header .title {
     float: left;
-    font-size: 44px;
+    font-size: 30px;
+    margin-top: 13px;
 }
 #header .title a {
-    color: #eee;
+    color: #fff;
+    padding-left: 45px;
+    background-image: url(/img/logo.png);
+    background-repeat: no-repeat;
 }
 #header .login-info {
     float: right;
     color: #eee;
-    background: #333;
+    background: #444;
     padding: 5px 10px;
     border-radius: 0px 0px 2px 2px;
 }
@@ -173,6 +179,7 @@ body{
 .side .box .title {
     line-height: 24px;
     font-weight: bold;
+    font-size: 14px;
 }
 .side .recent li {
     margin-bottom: 5px;
