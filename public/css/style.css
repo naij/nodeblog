@@ -141,9 +141,9 @@ body{
 }
 #header .title a {
     color: #fff;
-    padding-left: 45px;
+    /*padding-left: 45px;
     background-image: url(/img/logo.png);
-    background-repeat: no-repeat;
+    background-repeat: no-repeat;*/
 }
 #header .login-info {
     float: right;
