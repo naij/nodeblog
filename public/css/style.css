@@ -10,6 +10,7 @@ a:hover {
 }
 body{
     background-color: #e9edf0;
+    min-width:1024px;
 }
 
 .box {
