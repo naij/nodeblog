@@ -125,36 +125,55 @@ body{
     padding-right: 1em;
 }
 #header {
+    
+}
+.header-bd {
+    height: 70px;
+    width: 1000px;
+    margin: 0 auto;
+    position: relative;
+}
+.header-bd .title {
+    font-size: 42px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.header-bd .title a {
+    color: #333;
+}
+.site-nav{
+    width: 1000px;
+    margin: 0 auto;
     background-color: #000;
     background-image: url(/img/noisy-black.jpg);
     background-repeat: repeat-x;
 }
-#header .header-bd {
-    height: 70px;
-    width: 1000px;
-    margin: 0 auto;
-}
-#header .title {
+.site-nav li{
     float: left;
-    font-size: 30px;
-    margin-top: 13px;
 }
-#header .title a {
+.site-nav a{
     color: #fff;
-    /*padding-left: 45px;
-    background-image: url(/img/logo.png);
-    background-repeat: no-repeat;*/
+    float: left;
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    text-align: center;
 }
-#header .login-info {
-    float: right;
+.header-bd .login-info {
     color: #eee;
-    background: #444;
+    background: #999;
     padding: 5px 10px;
-    border-radius: 0px 0px 2px 2px;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
-#header .login-info a {
+.header-bd .login-info a {
     color: #eee;
 }
+
+
 #content {
     background: #f8fafa;
     color: #454545;
@@ -190,12 +209,9 @@ body{
     margin-bottom: 5px;
 }
 .side .tag li {
-    float: left;
-    padding: 0 2px;
+    margin-bottom: 5px;
 }
 .side .tag li a {
-    float: left;
-    padding: 2px 4px;
 }
 .side .tag li a:hover {
     background-color: #00A8FF;
