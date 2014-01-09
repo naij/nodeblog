@@ -168,7 +168,7 @@ body{
     width: 1000px;
     margin: 0 auto;
     background-color: #000;
-    background-image: url(/img/noisy-black.jpg);
+    background-image: url(/assets/img/noisy-black.jpg);
     background-repeat: repeat-x;
 }
 .site-nav li{
