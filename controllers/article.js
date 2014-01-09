@@ -24,12 +24,16 @@ exports.getAtricles = function (req, res, next) {
             return false;
         }
 
+        var list = [];
+
         for (var i = 0; i < data.length; i++) {
-            data[i]['publishDate'] = util.formatDate(data[i].update);
+            var temp = data[i].toJSON();
+            temp['publishDate'] = util.formatDate(temp.update);
+            list.push(temp);
         }
 
         res.json({
-            data: data,
+            data: list,
             info: {
                 ok: true,
                 msg: null

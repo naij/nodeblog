@@ -2,8 +2,6 @@ var articleCtrl = require('./article');
 var util = require('../libs/util');
 
 exports.index = function(req, res, next) {
-    //var proxy = EventProxy.create('tags', 'topics', 'hot_topics', 'stars', 'tops', 'no_reply_topics', 'pages', function(){console.log('ok')});
-
     res.render('index');
 
     // articleCtrl.getFullArticle(function(err, data) {

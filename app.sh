@@ -6,7 +6,7 @@ ACTION=$1
 
 # help
 usage() {
-    echo 'Usage: ./app.sh {start|stop|restart}'
+    echo 'Usage: ./app.sh {start|stop|restart|debug}'
     exit 1;
 }
 
@@ -49,6 +49,19 @@ restart() {
     start
 }
 
+# debug
+debug() {
+    pid=`get_pid`
+
+    if [ ! -z $pid ]; then
+        echo 'server is already running'
+    else
+        $NODE --debug-brk $DIR/app.js 2>&1 &
+        echo 'server is debugging'
+    fi
+}
+
+
 case $ACTION in
     start)
         start
@@ -58,6 +71,9 @@ case $ACTION in
     ;;
     restart)
         restart
+    ;;
+    debug)
+        debug
     ;;
     *)
         usage
