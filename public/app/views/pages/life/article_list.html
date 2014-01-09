@@ -1,0 +1,18 @@
+<ul class="article-list">
+    {{#list}}
+    <li class="list-item">
+        <div class="hd">
+            <h3 class="title">
+                <a href="article/{{_id}}" target="_blank">{{title}}</a>
+            </h3>
+            <div class="meta">
+                <span class="date"><i class="iconfont">&#51;</i> {{publishDate}}</span>
+                <span class="tag"><i class="iconfont">&#326;</i> {{tag}}</span>
+            </div>
+        </div>
+        <div class="bd markdown-body">
+            {{{content}}}
+        </div>
+    </li>
+    {{/list}}
+</ul>
