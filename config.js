@@ -10,9 +10,12 @@ exports.config = {
     description: 'Kiwi\'s Blog',
     version: '0.1',
 
-    //配置mongodb 线上环境和本地环境
-    //db: 'mongodb://127.0.0.1/test',
-    db : function(){
+    // 静态资源
+    staticCDN: '',
+
+    // 配置mongodb 线上环境和本地环境
+    // db: 'mongodb://127.0.0.1/test',
+    db: function () {
         if(process.env.VCAP_SERVICES){
             var env = JSON.parse(process.env.VCAP_SERVICES);
             var mongo = env['mongodb-1.8'][0]['credentials'];

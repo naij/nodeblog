@@ -1,0 +1,13 @@
+.getcode-box {
+  position: relative;
+}
+.getcode-box .clipboard-tip {
+  position: absolute;
+  top: -32px;
+  right: 0;
+}
+.getcode-box .swf-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

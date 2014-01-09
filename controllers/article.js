@@ -5,6 +5,39 @@ var models = require('../models');
 var util = require('../libs/util');
 var Article = models.Article;
 
+
+// 根据type类型获取文章列表
+// type类型有：kiwiobject|discovery|life
+exports.getAtricles = function (req, res, next) {
+    var type = req.query.type;
+
+    getFullArticle(function (err, data) {
+        if (err) {
+            res.json({
+                data: null,
+                info: {
+                    ok: false,
+                    msg: '查询出错'
+                }
+            });
+
+            return false;
+        }
+
+        for (var i = 0; i < data.length; i++) {
+            data[i]['publishDate'] = util.formatDate(data[i].update);
+        }
+
+        res.json({
+            data: data,
+            info: {
+                ok: true,
+                msg: null
+            }
+        });
+    });
+}
+
 /**
  * 根据id获取文章详情
  * @param  {[type]}   req  [description]

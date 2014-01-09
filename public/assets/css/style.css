@@ -13,6 +13,28 @@ body{
     min-width:1024px;
 }
 
+/* 切换的进度条显示 */
+.switch-loading {
+    height: 3px;
+    overflow: hidden;
+    background-color: #06d;
+    display: block;
+    position: fixed;
+    _position: absolute;
+    left: 0;
+    top: 0;
+    width: 0%;
+    z-index: 999999;
+}
+.wrap-loading {
+    width: 40px;
+    height: 18px;
+    margin: 50px auto;
+    background-image: url(http://img02.taobaocdn.com/tps/i2/T19ZHDXf4fXXc.LCDe-40-18.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 .box {
     margin-bottom: 20px;
 }

@@ -2,12 +2,14 @@ var site = require('../controllers/site');
 var article = require('../controllers/article');
 var sign = require('../controllers/sign');
 
-module.exports = function(app) {
-    // 首页
+module.exports = function (app) {
     app.get('/', site.index);
 
+    // 文章列表
+    app.get('/article/getAtricles', article.getAtricles);
+
     // 文章详情
-    app.get('/article/:aid', article.index);
+    app.get('/article/getAtricleById', article.getAtricleById);
 
     // 文章编辑
     app.get('/articleedit/:aid', article.showEdit);

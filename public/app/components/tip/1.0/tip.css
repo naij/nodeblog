@@ -1,0 +1,39 @@
+.med-tip{overflow:hidden;zoom:1;display:inline-block;*display:inline; vertical-align:middle;}
+.med-tip-ie{*display:inline;}
+
+.med-tip .icon,.med-tip  .close{display:block;width:16px;height:16px;background:url(http://img04.taobaocdn.com/tps/i4/T1RS05Xi0FXXXXXXXX-16-128.png) no-repeat;}
+.med-tip .icon{position:absolute;left:6px;top:2px;}
+.med-tip  .close{background-position:0px -112px;width:13px;height:13px;position:absolute;right:7px;top:4px; font-size:0;overflow:hidden;}
+.med-tip  .close:hover{background-position:0px -96px;}
+
+.med-tip .ok,.med-tip .error,.med-tip .tips,.med-tip .stop,.med-tip .alert,.med-tip .attention{float:left;border:1px solid #000;padding:0px 28px;position:relative; _height:1%;min-height:20px;line-height:20px}
+.med-tip .ok{border-color:#aadf43;background-color:#f0fce4;color:#129c00;}
+.med-tip .ok  .icon{background-position:0px 0px;}
+
+.med-tip .error{border-color:#ffbdbd;background-color:#fff2f2}
+.med-tip .error  .icon{background-position:0px -16px;}
+
+.med-tip .stop{border-color:#ffbdbd;background-color:#fff2f2}
+.med-tip .stop  .icon{background-position:0px -48px;}
+
+
+.med-tip .tips{border-color:#ffd16f;background-color:#feffe6}
+.med-tip .tips  .icon{background-position:0px -32px;}
+
+.med-tip .alert{border-color:#ffd16f;background-color:#feffe6}
+.med-tip .alert  .icon{background-position:0px -64px;}
+
+.med-tip .attention{border-color:#ffd16f;background-color:#feffe6;color:#D5A11B;}
+.med-tip .attention  .icon{background-position:0px -80px;}
+
+.med-tip .noicon{padding-left:6px}
+.med-tip .noclose{padding-right:10px}
+.med-tip .noborder{border:0 none; }
+.med-tip .nocontent{padding-right:0px}
+.med-tip .nobackground{background-color:transparent}
+
+.med-tip .msg{_vertical-align:baseline;_zoom:1}
+.med-tip-b{display:block;}
+.med-tip-b .ok, .med-tip-b .error, .med-tip-b .tips, .med-tip-b .stop, .med-tip-b .alert, .med-tip-b .attention {
+    float: none;
+}
