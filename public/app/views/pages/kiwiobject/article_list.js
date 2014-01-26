@@ -18,14 +18,8 @@ KISSY.add("app/views/pages/kiwiobject/article_list", function (S, View, MM, VOM,
 
                 me.setViewPagelet({
                     list: data
-                }, function () {
-                    me.components();
                 });
             }));
-        },
-        components: function () {
-            $('pre').addClass('prettyprint linenums');
-            prettyPrint();
         }
     });
 },{
