@@ -12,23 +12,19 @@ module.exports = function (app) {
     app.get('/article/getArticleById', article.getArticleById);
 
     // 文章编辑
-    app.get('/articleedit/:aid', article.showEdit);
-    app.post('/articleedit',article.edit);
+    app.post('/article/articleSave',article.edit);
 
     // 文章添加
-    app.get('/articleadd',article.showAdd);
-    app.post('/articleadd',article.add);
+    app.post('/article/articleAdd',article.add);
 
     // 文章删除
-    app.get('/articledel/:aid',article.del);
+    app.get('/article/articleDel',article.del);
 
-    //标签
+    // 标签
     app.get('/tag/:tag',article.tag);
 
     // 账户
-    app.get('/signin', sign.showLogin);
-    app.post('/signin', sign.login);
-    app.get('/signout', sign.signout);
-    app.get('/initadmin', sign.showInit);
-    app.post('/initadmin', sign.init);
+    app.get('/sign/loginMsg', sign.loginMsg);
+    app.post('/sign/login', sign.login);
+    app.get('/sign/logout', sign.logout);
 }

@@ -28,7 +28,7 @@ KISSY.add("app/views/header", function (S, View, Node, MM) {
             }
 
             me.setViewPagelet({
-
+                admin: window.UserInfo.admin
             }, function () {
                 navSelected();
             }, function () {

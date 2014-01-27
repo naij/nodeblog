@@ -4,51 +4,45 @@ var config = require('../config').config;
 var models = require('../models');
 var User = models.User;
 
-
-// Show user login page.
-exports.showInit = function(req, res) {
-    res.render('sign/init');
-};
-
-exports.init = function(req, res, next){
-    var loginname = sanitize(req.body.name).trim().toLowerCase();
-    var pass = sanitize(req.body.pass).trim();
-
-    if (!loginname || !pass) {
-        req.flash('error','用户名或者密码错误');
-        return res.render('sign/init');
+// login message
+exports.loginMsg = function (req, res) {
+    if (req.session.user) {
+        res.json({
+            data: req.session.user,
+            info: {
+                ok: true,
+                msg: null
+            }
+        });
+    } else {
+        res.json({
+            data: '',
+            info: {
+                ok: true,
+                msg: null
+            }
+        });
     }
-
-    var user = new User();
-    user.name = "admin";
-    user.loginname = loginname;
-    user.pass = pass;
-    user.save(function(err) {
-        if(err) return next(err);
-        res.redirect('home');
-    });
 }
 
-// Show user login page.
-exports.showLogin = function(req, res) {
-    if (req.session.user) {
-        res.redirect('home');
-    } else {
-        res.render('sign/signin');
-    }
-};
-
 // login.
-exports.login = function(req, res, next) {
+exports.login = function (req, res, next) {
     var loginname = sanitize(req.body.name).trim().toLowerCase();
     var pass = sanitize(req.body.pass).trim();
 
     if (!loginname || !pass) {
-        req.flash('error','用户名或者密码错误');
-        return res.render('sign/signin');
+        res.json({
+            data: {
+                error: '用户名或者密码错误'
+            },
+            info: {
+                ok: true,
+                msg: null
+            }
+        });
     }
 
-    User.findOne({'loginname': loginname}, function(err, user) {
+    User.findOne({'loginname': loginname}, function (err, user) {
         if (err) return next(err);
 
         if (!user) {
@@ -67,7 +61,7 @@ exports.login = function(req, res, next) {
 };
 
 // sign out
-exports.signout = function(req, res, next) {
+exports.logout = function (req, res, next) {
     req.session.destroy();
     res.clearCookie(config.cookie_name, {
         path: '/'
@@ -76,15 +70,13 @@ exports.signout = function(req, res, next) {
 };
 
 // auth_user middleware
-exports.authUser = function(req, res, next) {
+exports.authUser = function (req, res, next) {
     if (req.session.user) {
         if (config.admins[req.session.user.name]) {
-            req.session.user.is_admin = true;
+            req.session.user.admin = true;
         }
-        res.local('current_user', req.session.user);
         return next();
-    }
-    else {
+    } else {
         var cookie = req.cookies[config.cookie_name];
         if (!cookie) return next();
 
@@ -96,11 +88,10 @@ exports.authUser = function(req, res, next) {
             if (err) return next(err);
             if (user) {
                 if (config.admins[user.name]) {
-                    user.is_admin = true;
+                    user.admin = true;
                 }
 
                 req.session.user = user;
-                res.local('current_user', req.session.user);
                 return next();
             } else {
                 return next();

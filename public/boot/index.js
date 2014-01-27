@@ -25,4 +25,19 @@
             extensions: ["app/extview"]
         });
     });
+
+    window.UserInfo = {};
+    
+    // 登录判断
+    (function (S) {
+        S.io({
+            url: '/sign/loginMsg',
+            type: 'get',
+            async: false,
+            dataType: 'json',
+            success: function (resp) {
+                S.mix(window.UserInfo, resp.data);
+            }
+        });
+    })(KISSY);
 }(KISSY));

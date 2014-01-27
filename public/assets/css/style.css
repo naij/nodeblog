@@ -104,17 +104,24 @@ body{
 
 
 /* 提示*/
-.alert {
+.tip {
     padding: 8px 35px 8px 14px;
     margin-bottom: 18px;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-    background-color: #FCF8E3;
-    border: 1px solid #FBEED5;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
-    color: #C09853;
 }
+.tip-alert {
+    background-color: #ed9c28;
+    border: 1px solid #d58512;
+    color: #fff;
+}
+.tip-ok {
+    background-color: #47a447;
+    border: 1px solid #398439;
+    color: #fff;
+}
+
 /* 按钮*/
 .button-l {
     border-radius: 2px;
@@ -324,15 +331,15 @@ body{
     color: #FFF;
 }
 /* 登录*/
-.signin {
+.login {
     padding: 10px;
 }
-.signin .hd {
+.login .hd {
     border-bottom: 1px solid #ddd;
     margin-bottom: 20px;
     padding-bottom: 10px;
 }
-.signin .hd .title {
+.login .hd .title {
     font-size: 14px;
 }
 #footer {
@@ -340,7 +347,4 @@ body{
     width: 1000px;
     margin: 0 auto;
     padding: 20px 0;
-}
-#footer a {
-    margin: 0 10px;
 }
