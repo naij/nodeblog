@@ -1,10 +1,18 @@
 KISSY.add("app/models/modelmanager", function (S, BaseManager, BaseModel) {
     var Manager = BaseManager.create(BaseModel);
     Manager.registerModels([
-        // 内容管理-内容列表
+        // 获取文章列表
         {
-            name: 'kiwiobject_article_list',
-            url: '/article/getAtricles',
+            name: 'article_list',
+            url: '/article/getArticles',
+            urlParams:{
+                action:'get'
+            }
+        },
+        // 获取文章列表
+        {
+            name: 'article_detail',
+            url: '/article/getArticleById',
             urlParams:{
                 action:'get'
             }

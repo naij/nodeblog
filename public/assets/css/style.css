@@ -183,6 +183,9 @@ body{
     text-align: center;
     padding: 0 15px;
 }
+.site-nav li.selected a{
+    background-color: #000;
+}
 .header-bd .login-info {
     color: #eee;
     background: #999;

@@ -6,10 +6,10 @@ module.exports = function (app) {
     app.get('/', site.index);
 
     // 文章列表
-    app.get('/article/getAtricles', article.getAtricles);
+    app.get('/article/getArticles', article.getArticles);
 
     // 文章详情
-    app.get('/article/getAtricleById', article.getAtricleById);
+    app.get('/article/getArticleById', article.getArticleById);
 
     // 文章编辑
     app.get('/articleedit/:aid', article.showEdit);

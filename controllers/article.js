@@ -8,10 +8,10 @@ var Article = models.Article;
 
 // 根据type类型获取文章列表
 // type类型有：kiwiobject|discovery|life
-exports.getAtricles = function (req, res, next) {
+exports.getArticles = function (req, res, next) {
     var type = req.query.type;
 
-    getFullArticle(function (err, data) {
+    getFullArticle(type, function (err, data) {
         if (err) {
             res.json({
                 data: null,
@@ -48,50 +48,39 @@ exports.getAtricles = function (req, res, next) {
  * @param  {[type]}   res  [description]
  * @param  {Function} next [description]
  */
-exports.index = function(req, res, next) {
-    var articleId = req.params.aid;
+exports.getArticleById = function(req, res, next) {
+    var articleId = req.query.id;
 
     if (articleId.length !== 24) {
         console.log('此话题不存在或已被删除。');
         return;
     }
 
-    var render = function(article, recentArticle) {
-        res.render('article/article', {
-            article: article,
-            recentArticle: recentArticle
-        });
-    }
-
-    var proxy = EventProxy.create('article', 'recentArticle', render);
-
     getArticleById(articleId, function(err, data) {
         if (err) {
-            next(err);
+            res.json({
+                data: null,
+                info: {
+                    ok: false,
+                    msg: '查询出错'
+                }
+            });
+
+            return false;
         }
 
         //格式化时间
-        var tempDate = util.formatDate(data.update);
-        data.publishDate = tempDate;
+        var tempData = data.toJSON();
+        var tempDate = util.formatDate(tempData.update);
+        tempData.publishDate = tempDate;
 
-        proxy.emit('article', data);
-    });
-
-    getFullArticle(function(err, data) {
-        if (err) {
-            next(err);
-        }
-
-        var tempDate = '';
-
-        for(var i = 0; i < data.length; i++) {
-            tempDate = util.formatDate(data[i].update);
-            data[i].publishDate = tempDate;
-        }
-
-        var recentArticle = data.slice(0, 5);
-
-        proxy.emit('recentArticle', recentArticle);
+        res.json({
+            data: tempData,
+            info: {
+                ok: true,
+                msg: null
+            }
+        });
     });
 };
 
@@ -289,12 +278,9 @@ function getArticleByTag(tag, callback) {
     });
 }
 
-function getFullArticle(callback) {
-    Article.find({}, null, {sort:[['update','desc']]}, function(err, doc) {
+function getFullArticle(type, callback) {
+    Article.find({type: type}, null, {sort:[['update','desc']]}, function(err, doc) {
         if (err) return callback(err);
         callback(null, doc);
     });
 }
-
-exports.getArticleById = getArticleById;
-exports.getFullArticle = getFullArticle;

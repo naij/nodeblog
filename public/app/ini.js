@@ -8,8 +8,11 @@ KISSY.add("app/ini", function (S) {
         routes: {
             'app/views/default': [
                 '/pages/kiwiobject/article_list',
+                '/pages/kiwiobject/article_detail',
                 '/pages/discovery/article_list',
+                '/pages/discovery/article_detail',
                 '/pages/life/article_list',
+                '/pages/life/article_detail',
                 '/pages/about/about',
                 '/pages/tags/tags',
                 '/pages/archive/archive'
