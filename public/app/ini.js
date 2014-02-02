@@ -17,7 +17,9 @@ KISSY.add("app/ini", function (S) {
                 '/pages/tags/tags',
                 '/pages/archive/archive',
                 '/manage/login',
-                '/manage/index'
+                '/manage/index',
+                '/manage/add',
+                '/manage/edit'
             ]
         }
     };

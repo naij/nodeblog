@@ -4,34 +4,58 @@ KISSY.add("app/models/modelmanager", function (S, BaseManager, BaseModel) {
         // 获取文章列表
         {
             name: 'article_list',
-            url: '/article/getArticles',
-            urlParams:{
-                action:'get'
-            }
+            url: '/article/getArticles'
         },
         // 获取文章列表
         {
             name: 'article_detail',
-            url: '/article/getArticleById',
-            urlParams:{
-                action:'get'
+            url: '/article/getArticleById'
+        },
+
+        // 文章添加
+        {
+            name: 'article_add',
+            url: '/article/articleAdd',
+            options: {
+                type: 'post'
             }
         },
+        // 文章编辑
+        {
+            name: 'article_edit',
+            url: '/article/articleEdit',
+            options: {
+                type: 'post'
+            }
+        },
+        // 文章删除
+        {
+            name: 'article_del',
+            url: '/article/articleDel',
+            options: {
+                type: 'post'
+            }
+        },
+
         // 获取登录信息
         {
             name: 'login_msg',
-            url: '/sign/loginMsg',
-            urlParams:{
-                action:'get'
-            }
+            url: '/sign/loginMsg'
         },
+        // 登录
         {
             name: 'login',
             url: '/sign/login',
-            urlParams:{
-                action:'post'
+            options: {
+                type: 'post'
             }
+        },
+        // 登出
+        {
+            name: 'logout',
+            url: '/sign/logout'
         }
+
     ]);
     return Manager;
 }, {

@@ -46,27 +46,7 @@ KISSY.add("app/extview", function(S, MV, Base) {
          */
         toJSON: function() {
             return this.getAttrVals();
-        } //,
-        /**
-         * 设置key对应的值
-         * @param {String|Object} name  字符串或对象
-         * @param {Object} value 值
-         * @param {Object} opts
-         */
-        /*set: function(name, value, opts) {
-            var obj = name;
-            if (!S.isPlainObject(obj)) {
-                obj = {};
-                obj[name] = value;
-            }
-            //console.log(name,value);
-            for (var key in obj) {
-                if (!this.hasAttr(key)) {
-                    throw Error("The DataKey: '" + key + "' has not been registed in current ViewModel!");
-                }
-            }
-            return this.constructor.superclass.set.call(this, name, value, opts);
-        }*/
+        }
     });
 
     var Pagelet;

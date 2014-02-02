@@ -3,6 +3,7 @@ var article = require('../controllers/article');
 var sign = require('../controllers/sign');
 
 module.exports = function (app) {
+    
     app.get('/', site.index);
 
     // 文章列表
@@ -12,19 +13,23 @@ module.exports = function (app) {
     app.get('/article/getArticleById', article.getArticleById);
 
     // 文章编辑
-    app.post('/article/articleSave',article.edit);
+    app.post('/article/articleEdit', article.edit);
 
     // 文章添加
-    app.post('/article/articleAdd',article.add);
+    app.post('/article/articleAdd', article.add);
 
     // 文章删除
-    app.get('/article/articleDel',article.del);
+    app.post('/article/articleDel', article.del);
 
     // 标签
     app.get('/tag/:tag',article.tag);
 
-    // 账户
+    // 账户信息
     app.get('/sign/loginMsg', sign.loginMsg);
+
+    // 登录
     app.post('/sign/login', sign.login);
+
+    // 登出
     app.get('/sign/logout', sign.logout);
 }

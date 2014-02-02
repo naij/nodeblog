@@ -84,36 +84,6 @@ exports.getArticleById = function(req, res, next) {
     });
 };
 
-
-/**
- * 显示文章编辑页面
- * @param  {[type]}   req  [description]
- * @param  {[type]}   res  [description]
- * @param  {Function} next [description]
- */
-exports.showEdit = function(req, res, next) {
-    var articleId = req.params.aid;
-
-    if (!req.session.user) {
-        return res.redirect('home');
-    }
-
-    if (articleId.length !== 24) {
-        console.log('此话题不存在或已被删除。');
-        return;
-    }
-
-    getArticleById(articleId, function(err, doc) {
-        if (err) {
-            next(err);
-        }
-
-        res.render('article/edit', {
-            article : doc
-        });
-    });
-}
-
 /**
  * 获取文章编辑内容并保存到数据库
  * @param  {[type]}   req  [description]
@@ -136,25 +106,24 @@ exports.edit = function(req, res, next) {
         doc.markdown = markdownContent.replace(/&/g, "&amp;");
         doc.save(function (err) {
             if (err) {
-                return next(err);
+                res.json({
+                    data: '',
+                    info: {
+                        ok: false,
+                        msg: '保存出错，请重试！'
+                    }
+                });
+            } else {
+                res.json({
+                    data: '',
+                    info: {
+                        ok: true,
+                        msg: null
+                    }
+                });
             }
-            return res.redirect('home');
         });
     });
-}
-
-/**
- * 显示新建文章页面
- * @param  {[type]}   req  [description]
- * @param  {[type]}   res  [description]
- * @param  {Function} next [description]
- */
-exports.showAdd = function(req, res, next) {
-    if (!req.session.user) {
-        return res.redirect('home');
-    }
-
-    res.render('article/add');
 }
 
 /**
@@ -164,17 +133,25 @@ exports.showAdd = function(req, res, next) {
  * @param {Function} next [description]
  */
 exports.add = function(req, res, next) {
-    if (!req.session.user) {
-        return res.redirect('home');
+    if (!req.session.hasLogin) {
+        res.json({
+            data: '',
+            info: {
+                ok: false,
+                msg: '未登录'
+            }
+        });
+
+        return;
     }
 
-    var tag = req.body.tag;
+    var type = req.body.type;
     var title = sanitize(req.body.title).trim();
     var markdownContent = req.body.content;
     var htmlContent = markdown.makeHtml(markdownContent);
 
     var article = new Article();
-    article.tag = tag;
+    article.type = type;
     article.title = title;
     article.content = htmlContent;
     article.markdown = markdownContent.replace(/&/g, "&amp;");
@@ -182,7 +159,13 @@ exports.add = function(req, res, next) {
         if (err) {
             return next(err);
         }
-        return res.redirect('home');
+        res.json({
+            data: '',
+            info: {
+                ok: true,
+                msg: null
+            }
+        });
     });
 }
 
@@ -193,14 +176,28 @@ exports.add = function(req, res, next) {
  * @param  {Function} next [description]
  */
 exports.del = function(req, res, next) {
-    var articleId = req.params.aid;
+    var articleId = req.body.id;
 
-    if (!req.session.user) {
-        return res.redirect('home');
+    if (!req.session.hasLogin) {
+        res.json({
+            data: '',
+            info: {
+                ok: false,
+                msg: '未登录'
+            }
+        });
+
+        return;
     }
 
     if (articleId.length !== 24) {
-        console.log('此话题不存在或已被删除。');
+        res.json({
+            data: '',
+            info: {
+                ok: false,
+                msg: '此文章不存在或已被删除。'
+            }
+        });
         return;
     }
 
@@ -210,7 +207,13 @@ exports.del = function(req, res, next) {
         }
 
         doc.remove(function(err) {
-            return res.redirect('home');
+            res.json({
+                data: '',
+                info: {
+                    ok: true,
+                    msg: null
+                }
+            });
         })
     });
 }

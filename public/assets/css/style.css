@@ -13,6 +13,34 @@ body{
     min-width:1024px;
 }
 
+/**
+ * 常用颜色
+ */
+.color-gray {
+    color: #777;
+}
+.color-666 {
+    color: #666;
+}
+.color-grey {
+    color: #999;
+}
+.color-smoke {
+    color: #ccc;
+}
+.color-blue {
+    color: #06d;
+}
+.color-red {
+    color: red;
+}
+.color-green {
+    color: green;
+}
+.color-orange {
+    color: orange;
+}
+
 /* 切换的进度条显示 */
 .switch-loading {
     height: 3px;
@@ -51,6 +79,29 @@ body{
 }
 .box .bd {
     margin-top: 10px;
+}
+
+/* table组件扩展 */
+.table-container .toolbar{
+    padding: 8px 10px;
+}
+.table-container .table th:first-child{
+    padding-left: 10px;
+}
+.table-container .table th:last-child{
+    padding-right: 10px;
+}
+.table-container .table td:first-child{
+    padding-left: 10px;
+}
+.table-container .table td:last-child{
+    padding-right: 10px;
+}
+.table-container .table td.table-child-td:first-child{
+    padding-left: 40px;
+}
+.table-container .table td.table-child-td:last-child{
+    padding-right: 40px;
 }
 
 /* 基本表单*/
@@ -292,10 +343,7 @@ body{
     margin-top: 40px;
     line-height: 1.8;
 }
-/* 文章编辑*/
-.article-edit {
-    padding: 10px;
-}
+/* 文章编辑 */
 .article-edit .hd {
     border-bottom: 1px solid #eee;
     margin-bottom: 20px;
@@ -305,11 +353,11 @@ body{
     font-size: 18px;
 }
 .article-edit .input {
-    width: 970px;
+    width: 932px;
     padding: 8px 4px;
 }
 .article-edit .textarea {
-    width: 970px;
+    width: 932px;
     height: 700px;
 }
 .article-edit .field{

@@ -155,7 +155,7 @@ KISSY.add("app/util/dialog/dialog", function(S, Vframe, VOM, BXDialog) {
                     opacity: 1
                 },
                 direction: {
-                    node: $('#main'),
+                    node: $('#content'),
                     value: config.direction || 'right'
                 },
                 width: config.width || 600

@@ -166,30 +166,7 @@ KISSY.add("app/models/basemodel", function (S, MxModel, IO, Util) {
 
     return MxModel.extend({
         parse: function (resp) {
-            // var dataType=this.get('dataType');
             return resp;
-            // if(!dataType||dataType=='json'){
-            //     return resp;
-            //     // var data=resp.result;
-            //     // if (data) {
-            //     //     if(S.isString(data)){
-            //     //         data={
-            //     //             data:data
-            //     //         };
-            //     //     }else if(S.isArray(data)){
-            //     //         data={
-            //     //             list:data
-            //     //         };
-            //     //     }
-            //     //     if(resp.msg){
-            //     //         data.msg=resp.msg;
-            //     //     }
-            //     //     return data;
-            //     // }
-            // }else{
-            //     return resp;
-            // }
-            // return {};
         },
         sync: function (callback) {
             var model = this;
@@ -207,12 +184,13 @@ KISSY.add("app/models/basemodel", function (S, MxModel, IO, Util) {
             }
             
             var data;
-            var type = model.get('type') || 'GET';
             var url = model.get('url');
-            var jsonp = model.get("jsonp");
-            var async = model.get("async");
-            var dataType = model.get('dataType') || 'json';
-            var noVerify = model.get('noVerify');
+            var options = model.get('options') || {};
+            var type = options.type || 'GET';
+            var jsonp = options.jsonp;
+            var async = options.async;
+            var dataType = options.dataType || 'json';
+            var noVerify = options.noVerify;
 
             if (type.toUpperCase() === 'GET') {
                 model.setUrlParams('t', S.now());

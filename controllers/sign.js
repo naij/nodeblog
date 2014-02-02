@@ -6,9 +6,11 @@ var User = models.User;
 
 // login message
 exports.loginMsg = function (req, res) {
-    if (req.session.user) {
+    if (req.session.hasLogin) {
         res.json({
-            data: req.session.user,
+            data: {
+                hasLogin: true
+            },
             info: {
                 ok: true,
                 msg: null
@@ -16,7 +18,9 @@ exports.loginMsg = function (req, res) {
         });
     } else {
         res.json({
-            data: '',
+            data: {
+                hasLogin: false
+            },
             info: {
                 ok: true,
                 msg: null
@@ -40,23 +44,45 @@ exports.login = function (req, res, next) {
                 msg: null
             }
         });
+
+        return false;
     }
 
     User.findOne({'loginname': loginname}, function (err, user) {
         if (err) return next(err);
 
         if (!user) {
-            req.flash('error','用户不存在。');
-            return res.render('sign/signin');
-        }
-        if (pass !== user.pass) {
-            req.flash('error','密码错误。');
-            return res.render('sign/signin');
-        }
-        // store session cookie
-        genSession(user, res);
+            res.json({
+                data: {
+                    error: '用户不存在。'
+                },
+                info: {
+                    ok: true,
+                    msg: null
+                }
+            });
+        } else if (pass !== user.pass) {
+            res.json({
+                data: {
+                    error: '密码错误。'
+                },
+                info: {
+                    ok: true,
+                    msg: null
+                }
+            });
+        } else {
+            // store session cookie
+            genSession(user, res);
 
-        res.redirect('home');
+            res.json({
+                data: '',
+                info: {
+                    ok: true,
+                    msg: null
+                }
+            });
+        }
     });
 };
 
@@ -66,32 +92,36 @@ exports.logout = function (req, res, next) {
     res.clearCookie(config.cookie_name, {
         path: '/'
     });
-    res.redirect(req.headers.referer || 'home');
+    res.json({
+        data: '',
+        info: {
+            ok: true,
+            msg: null
+        }
+    });
 };
 
 // auth_user middleware
 exports.authUser = function (req, res, next) {
-    if (req.session.user) {
-        if (config.admins[req.session.user.name]) {
-            req.session.user.admin = true;
-        }
+    if (req.session.hasLogin) {
         return next();
     } else {
         var cookie = req.cookies[config.cookie_name];
-        if (!cookie) return next();
+        if (!cookie) {
+            return next();
+        }
 
         var auth_token = decrypt(cookie, config.session_secret);
         var auth = auth_token.split('\t');
         var user_id = auth[0];
 
-        User.findOne({_id: user_id}, function(err, user) {
-            if (err) return next(err);
-            if (user) {
-                if (config.admins[user.name]) {
-                    user.admin = true;
-                }
+        User.findOne({_id: user_id}, function (err, user) {
+            if (err) {
+                return next(err);
+            }
 
-                req.session.user = user;
+            if (user) {
+                req.session.hasLogin = true;
                 return next();
             } else {
                 return next();

@@ -1,10 +1,8 @@
-{{#admin}}
-<div class="tip tip-ok">
-    您已成功登录，进入<a href="#!/manage/index">管理后台</a>
-</div>
-{{/admin}}
-{{^admin}}
-<div class="login">
+{{#hasLogin}}
+<div class="tip tip-ok">您已成功登录！</div>
+{{/hasLogin}}
+{{^hasLogin}}
+<div class="login" bx-tmpl="error" bx-datakey="error">
     {{#error}}
     <div class="tip tip-alert">{{error}}</div>
     {{/error}}
@@ -31,4 +29,4 @@
         </form>
     </div>
 </div>
-{{/admin}}
+{{/hasLogin}}
