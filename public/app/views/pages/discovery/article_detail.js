@@ -20,7 +20,8 @@ KISSY.add("app/views/pages/discovery/article_detail", function (S, View, MM, VOM
                 var data = MesModel.get('data');
 
                 me.setViewPagelet({
-                    list: data
+                    list: data,
+                    aid: id
                 });
             }));
         }
