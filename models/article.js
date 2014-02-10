@@ -7,7 +7,8 @@ var ArticleSchema = new Schema({
     title: { type: String },
     content: { type: String },
     markdown: {type: String},
-    update: { type: Date, default: Date.now }
+    update: { type: Date, default: Date.now },
+    pv: {type: Number, default: 0}
 });
 
 mongoose.model('Article', ArticleSchema, 'article');

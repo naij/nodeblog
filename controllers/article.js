@@ -270,6 +270,10 @@ exports.tag = function(req, res, next) {
 function getArticleById(id, callback) {
     Article.findOne({_id: id}, function(err, doc) {
         if (err) return callback(err);
+
+        doc.pv += 1;
+        doc.save();
+        
         callback(null, doc);
     });
 }
