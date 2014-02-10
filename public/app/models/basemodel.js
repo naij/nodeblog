@@ -207,6 +207,11 @@ KISSY.add("app/models/basemodel", function (S, MxModel, IO, Util) {
                 async: async === false ? false : true,
                 success: function (resp, msg, xhr) {
                     if (dataType == 'json') {
+                        if(resp.data.hasOwnProperty('hasLogin') && resp.data.hasLogin === false) {
+                            window.location.href = '/#!/manage/login';
+                            return;
+                        }
+
                         // 在modelmanager里面配置
                         // 用来直接返回结果
                         if(noVerify){

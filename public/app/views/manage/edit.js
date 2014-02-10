@@ -10,7 +10,7 @@ KISSY.add("app/views/manage/edit", function (S, View, MM, VOM, Router, Node, Uti
             var id = params.id;
 
             me.manage(MM.fetchAll([{
-                name: "article_detail",
+                name: "manage_article_detail",
                 urlParams: {
                     id: id
                 }

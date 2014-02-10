@@ -3,15 +3,7 @@ KISSY.add("app/views/manage/login", function (S, View, MM) {
         render: function () {
             var me = this;
 
-            me.manage(MM.fetchAll([{
-                name: "login_msg"
-            }], function (errs, MesModel) {
-                var data = MesModel.get('data');
-
-                me.setViewPagelet({
-                    hasLogin: data.hasLogin
-                });
-            }));
+            me.setViewPagelet();
         },
         'submit<click>': function (e) {
             e.halt();
@@ -28,7 +20,6 @@ KISSY.add("app/views/manage/login", function (S, View, MM) {
                 if (data && data.error) {
                     pagelet.setChunkData('error', data.error);
                 } else {
-                    window.UserInfo.hasLogin = true;
                     me.navigate('/manage/index');
                 }
             }));

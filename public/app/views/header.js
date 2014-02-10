@@ -12,8 +12,7 @@ KISSY.add("app/views/header", function (S, View, Node, MM) {
             var pathMap = {
                 '/pages/kiwiobject/article_detail': '/pages/kiwiobject/article_list',
                 '/pages/discovery/article_detail': '/pages/discovery/article_list',
-                '/pages/life/article_detail': '/pages/life/article_list',
-                '/manage/edit': '/manage/index'
+                '/pages/life/article_detail': '/pages/life/article_list'
             }
 
             function navSelected () {
@@ -29,7 +28,6 @@ KISSY.add("app/views/header", function (S, View, Node, MM) {
             }
 
             me.setViewPagelet({
-                hasLogin: window.UserInfo.hasLogin
             }, function () {
                 navSelected();
             }, function () {

@@ -33,7 +33,7 @@ KISSY.add("app/views/manage/index", function (S, View, MM, VOM, Router, Node, Ut
             });
 
             me.manage(MM.fetchAll([{
-                name: "article_list",
+                name: "manage_article_list",
                 urlParams: {
                     type: typeId
                 }

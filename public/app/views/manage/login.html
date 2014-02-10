@@ -1,7 +1,3 @@
-{{#hasLogin}}
-<div class="tip tip-ok">您已成功登录！</div>
-{{/hasLogin}}
-{{^hasLogin}}
 <div class="login" bx-tmpl="error" bx-datakey="error">
     {{#error}}
     <div class="tip tip-alert">{{error}}</div>
@@ -29,4 +25,3 @@
         </form>
     </div>
 </div>
-{{/hasLogin}}
