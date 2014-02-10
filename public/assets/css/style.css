@@ -396,3 +396,14 @@ body{
     margin: 0 auto;
     padding: 20px 0;
 }
+
+.status-404 {
+    width: 400px;
+    text-align: center;
+    margin: 0 auto;
+    min-height: 700px;
+}
+.status-404 img{
+    margin: 100px auto;
+    border-radius: 3px;
+}

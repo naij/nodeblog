@@ -207,6 +207,7 @@ KISSY.add("app/models/basemodel", function (S, MxModel, IO, Util) {
                 async: async === false ? false : true,
                 success: function (resp, msg, xhr) {
                     if (dataType == 'json') {
+                        // 后台页面会有这个判断
                         if(resp.data.hasOwnProperty('hasLogin') && resp.data.hasLogin === false) {
                             window.location.href = '/#!/manage/login';
                             return;

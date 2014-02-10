@@ -38,4 +38,9 @@ module.exports = function (app) {
 
     // 登出
     app.get('/logout', manage.logout);
+
+    // 404
+    app.use(function (req, res) {
+        res.render("404");
+    });
 }
