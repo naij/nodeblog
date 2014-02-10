@@ -27,10 +27,14 @@ KISSY.add("app/views/manage/edit", function (S, View, MM, VOM, Router, Node, Uti
         components: function () {
             var editor = new Editor();
             editor.render();
+
+            this.manage('editor', editor);
         },
         'submit<click>': function (e) {
             e.halt();
             var me = this;
+            var editor = me.getManaged('editor');
+            editor.codemirror.save();
             var formData = S.unparam( S.IO.serialize('#editForm'));
 
             me.manage(MM.fetchAll([{
