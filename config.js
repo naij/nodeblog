@@ -15,7 +15,6 @@ exports.config = {
             'port': 27017,
             'username': '',
             'password': '',
-            'name': '',
             'db': 'kiwiobject'
         }
         var generate_mongo_url = function(obj){
