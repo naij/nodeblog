@@ -7,7 +7,7 @@ DB_NAME='kiwiobject'
 SERVER_USER='root'
 HOST_NAME='42.121.30.57'
 DIR=`pwd`
-CLOUD_PATH='/home/download/mongo_backup/'
+CLOUD_PATH='/home/download/mongo_backup'
 
 date_now=`date +%Y_%m_%d_%H_%M_%S`
 BACKUP_PATH='db_backup_'${date_now}
@@ -34,7 +34,7 @@ do_backup(){
 
 save_in_cloud(){
     log 'saving backup to another server...'
-    scp ${SERVER_USER}@${HOST_NAME}:${DIR}${BACKUP_FILENAME} ${CLOUD_PATH}${BACKUP_FILENAME}
+    scp ${SERVER_USER}@${HOST_NAME}:${DIR}/${BACKUP_FILENAME} ${CLOUD_PATH}/${BACKUP_FILENAME}
     log 'saved scuccessfully'
 }
 
