@@ -4,14 +4,13 @@ MONGODB_SHELL='mongo'
 DUMP_UTILITY='mongodump'
 
 DB_NAME='kiwiobject'
-SERVER_USER='root'
+SERVER_USER='wangjian'
 HOST_NAME='42.121.30.57'
-DIR=`pwd`
-CLOUD_PATH='/home/wangjian/download/mongo_backup'
 
 date_now=`date +%Y_%m_%d_%H_%M_%S`
-BACKUP_PATH='db_backup_'${date_now}
-BACKUP_FILENAME='db_backup_'${date_now}'.bz2'
+BASE_PATH='/root/mongodb/'
+BACKUP_PATH=${BASE_PATH}${date_now}
+BACKUP_FILENAME=${BASE_PATH}${date_now}'.bz2'
 current_year=`date +%Y`
 
 log() {
@@ -19,7 +18,7 @@ log() {
 }
 
 do_cleanup(){
-    rm -rf 'db_backup_'${current_year}* 
+    rm -rf ${current_year}*
     log 'cleaning up....'
 }
 
@@ -34,8 +33,9 @@ do_backup(){
 
 save_in_cloud(){
     log 'saving backup to another server...'
-    scp ${SERVER_USER}@${HOST_NAME}:${DIR}/${BACKUP_FILENAME} ${CLOUD_PATH}/${BACKUP_FILENAME}
+    scp ${DIR}/${BACKUP_FILENAME} ${SERVER_USER}@${HOST_NAME}:${CLOUD_PATH}/${BACKUP_FILENAME}
     log 'saved scuccessfully'
 }
 
-do_backup && save_in_cloud && do_cleanup
+# do_backup && save_in_cloud && do_cleanup
+do_backup
