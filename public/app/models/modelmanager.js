@@ -51,7 +51,7 @@ KISSY.add("app/models/modelmanager", function (S, BaseManager, BaseModel) {
         // 获取登录信息
         {
             name: 'login_msg',
-            url: '/manage/loginMsg'
+            url: '/loginMsg'
         },
         // 登录
         {

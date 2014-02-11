@@ -2,15 +2,12 @@
     <div class="header-bd">
         <h1 class="title"><a href="/">Kiwi's Blog</a></h1>
     </div>
-    <ul class="site-nav clearfix" bx-tmpl="nav" bx-datakey="hasLogin">
+    <ul class="site-nav clearfix">
         <li><a href="#!/pages/kiwiobject/article_list">kiwiobject</a></li>
         <li><a href="#!/pages/discovery/article_list">discovery</a></li>
         <li><a href="#!/pages/life/article_list">life</a></li>
         <li><a href="#!/pages/about/about">about</a></li>
         <li><a href="#!/pages/tags/tags">tags</a></li>
         <li><a href="#!/pages/archive/archive">archive</a></li>
-        {{#hasLogin}}
-        <li><a href="#!/manage/index">manage</a></li>
-        {{/hasLogin}}
     </ul>
 </div>

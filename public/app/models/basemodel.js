@@ -170,7 +170,6 @@ KISSY.add("app/models/basemodel", function (S, MxModel, IO, Util) {
         },
         sync: function (callback) {
             var model = this;
-            var UserInfo = window.UserInfo;
 
             //如果流控已经介入，则需要同步的model交给流控去处理
             SyncCounter++;

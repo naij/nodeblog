@@ -31,7 +31,7 @@ module.exports = function (app) {
     app.post('/manage/articleDel', article.del);
 
     // 账户信息
-    app.get('/manage/loginMsg', manage.loginMsg);
+    app.get('/loginMsg', manage.loginMsg);
 
     // 登录
     app.post('/login', manage.login);
