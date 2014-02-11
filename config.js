@@ -16,7 +16,7 @@ exports.config = {
             'username': '',
             'password': '',
             'name': '',
-            'db': 'test'
+            'db': 'kiwiobject'
         }
         var generate_mongo_url = function(obj){
             obj.hostname = (obj.hostname || 'localhost');
