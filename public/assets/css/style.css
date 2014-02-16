@@ -225,9 +225,7 @@ body{
 .site-nav{
     width: 1000px;
     margin: 0 auto;
-    background-color: #000;
-    background-image: url(/assets/img/noisy-black.jpg);
-    background-repeat: repeat-x;
+    background-color: rgb(33, 33, 33);
 }
 .site-nav li{
     float: left;
@@ -239,10 +237,11 @@ body{
     line-height: 40px;
     font-size: 14px;
     text-align: center;
-    padding: 0 15px;
+    width: 100px;
+    text-align: center;
 }
 .site-nav li.selected a{
-    background-color: #000;
+    background-color: rgb(51, 51, 51);
 }
 .header-bd .login-info {
     color: #eee;
@@ -264,6 +263,23 @@ body{
     padding: 20px 30px;
     margin: 20px auto;
     min-height: 600px;
+}
+
+.wrap-hd{
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+.wrap-hd .title-bar{
+    float:left;
+}
+.wrap-hd .title{
+    color:#333;
+    display:inline-block;
+    *display:inline;
+    font-size:18px;
+    margin-right:20px;
+    font-weight:normal;
 }
 
 /* 文章列表*/
@@ -378,7 +394,7 @@ body{
     background: #00A8FF;
     color: #FFF;
 }
-/* 登录*/
+/* 登录 */
 .login {
     padding: 10px;
 }
@@ -390,11 +406,22 @@ body{
 .login .hd .title {
     font-size: 14px;
 }
-#footer {
-    border-top: 1px solid #efefef;
-    width: 1000px;
-    margin: 0 auto;
-    padding: 20px 0;
+
+.manage-guide li{
+    float: left;
+}
+.manage-guide li a{
+    font-size: 24px;
+    float: left;
+    height: 120px;
+    width: 194px;
+    line-height: 120px;
+    text-align: center;
+    border: 1px solid #efefef;
+    margin-right: 15px;
+}
+.manage-guide li a:hover {
+    background-color: #f6f6f6;
 }
 
 .status-404 {
@@ -407,3 +434,11 @@ body{
     margin: 100px auto;
     border-radius: 3px;
 }
+
+#footer {
+    border-top: 1px solid #efefef;
+    width: 1000px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+

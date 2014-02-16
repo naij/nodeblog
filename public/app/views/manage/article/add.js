@@ -1,28 +1,14 @@
-KISSY.add("app/views/manage/edit", function (S, View, MM, VOM, Router, Node, Util) {
+KISSY.add("app/views/manage/article/add", function (S, View, MM, VOM, Router, Node, Util) {
     return View.extend({
         locationChange: function (e) {
             this.render();
         },
         render: function () {
             var me = this;
-            var loc = me.location;
-            var params = loc.params;
-            var id = params.id;
-
-            me.manage(MM.fetchAll([{
-                name: "manage_article_detail",
-                urlParams: {
-                    id: id
-                }
-            }], function (errs, MesModel) {
-                var data = MesModel.get('data');
-
-                me.setViewPagelet({
-                    list: data
-                }, function () {
-                    me.components();
-                });
-            }));
+            me.setViewPagelet({
+            }, function () {
+                me.components();
+            });
         },
         components: function () {
             var editor = new Editor();
@@ -35,13 +21,13 @@ KISSY.add("app/views/manage/edit", function (S, View, MM, VOM, Router, Node, Uti
             var me = this;
             var editor = me.getManaged('editor');
             editor.codemirror.save();
-            var formData = S.unparam( S.IO.serialize('#editForm'));
+            var formData = S.unparam( S.IO.serialize('#addForm'));
 
             me.manage(MM.fetchAll([{
-                name: "article_edit",
+                name: "article_add",
                 postParams: formData
             }], function (errs, MesModel) {
-                me.navigate('/manage/index');
+                me.navigate('/manage/article/list');
             }));
         }
     });
