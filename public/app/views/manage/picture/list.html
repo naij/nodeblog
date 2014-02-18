@@ -1,0 +1,43 @@
+<div class="wrap-hd clearfix">
+    <div class="title-bar">
+        <h2 class="title">图片列表</h2>
+    </div>
+</div>
+<div class="table-container">
+    <div class="toolbar clearfix">
+        <a href="#" class="btn btn-size25" mx-click="add">上传图片</a>
+        <div class="table-settings">
+            <a class="btn btn-size25" id="J_calendar" href="#"> 2014-02-11 至  2014-02-18 </a>
+        </div>
+    </div>
+    <table class="table" bx-name="tables" bx-tmpl="list" bx-datakey="list">
+        <thead>
+            <tr {{^list}}class="no-data"{{/list}}>
+                <th class="left" width="120">图片预览</th>
+                <th class="left">图片地址</th>
+                <th class="left" width="100">图片尺寸</th>
+                <th class="left" width="100">上传时间</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#list}}
+            <tr>
+                <td class="left"><a href="#!/pages/{{type}}/article_detail?id={{_id}}">{{title}}</a></td>
+                <td class="left">{{publishDate}}</td>
+                <td class="left">{{pv}}</td>
+                <td class="center">
+                    <a href="#/manage/article/edit?id={{_id}}" class="color-blue">编辑</a>
+                    <a href="#" mx-click="del{id:{{_id}}}" class="color-blue">删除</a>
+                </td>
+            </tr>
+            {{/list}}
+            {{^list}}
+            <tr class="none">
+                <td colspan="4">
+                    暂无数据
+                </td>
+            </tr>
+            {{/list}}
+        </tbody>
+    </table>
+</div>

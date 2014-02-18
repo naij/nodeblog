@@ -47,6 +47,22 @@ KISSY.add("app/models/modelmanager", function (S, BaseManager, BaseModel) {
                 type: 'post'
             }
         },
+        // 图片列表
+        {
+            name: 'picture_list',
+            url: '/manage/getPictures',
+            options: {
+                type: 'get'
+            }
+        },
+        // 文章添加
+        {
+            name: 'article_add',
+            url: '/manage/articleAdd',
+            options: {
+                type: 'post'
+            }
+        },
 
         // 获取登录信息
         {
