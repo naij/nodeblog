@@ -55,10 +55,10 @@ KISSY.add("app/models/modelmanager", function (S, BaseManager, BaseModel) {
                 type: 'get'
             }
         },
-        // 文章添加
+        // 图片添加
         {
-            name: 'article_add',
-            url: '/manage/articleAdd',
+            name: 'picture_add',
+            url: '/manage/pictureAdd',
             options: {
                 type: 'post'
             }
