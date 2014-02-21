@@ -29,5 +29,5 @@ exports.formatDate = function (date, friendly) {
     minute = ((minute < 10) ? '0' : '') + minute;
     second = ((second < 10) ? '0' : '') + second;
 
-    return year + '-' + month + '-' + day + ' ' + hour + ':' + minute;
+    return year + '-' + month + '-' + day;
 };

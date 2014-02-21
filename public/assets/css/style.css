@@ -295,24 +295,40 @@ body{
     position: relative;
 }
 .article-list .list-item .title {
-    font-size: 4em;
+    font-size: 2em;
     font-weight: bold;
 }
 .article-list .list-item .meta {
-    margin-top: 5px;
+    margin-top: 10px;
 }
-.article-list .list-item .meta span,
-.article-list .list-item .meta a{
-    color: #bc360a;
-    margin-right: 10px;
+.article-list .list-item .meta .date,
+.article-list .list-item .meta .divide,
+.article-list .list-item .meta .tag{
+    vertical-align: middle;
+}
+.article-list .list-item .meta .date{
+    color: #999;
+}
+.article-list .list-item .meta .divide{
+    border-left: 1px solid #ccc;
+    display: inline-block;
+    height: 13px;
+    line-height: 12px;
+    margin: 0 7px;
+    overflow: hidden;
+    width: 0;
+}
+.article-list .list-item .meta .tag{
+    color: #00A8FF;
 }
 .article-list .list-item .meta .iconfont{
     font-size: 12px;
 }
 
 .article-list .list-item .bd {
-    margin-top: 40px;
+    margin-top: 30px;
     line-height: 1.8;
+    color: #666;
 }
 .article-list .list-item .ft {
     position: absolute;
