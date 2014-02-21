@@ -1,1 +1,18 @@
-sfd
+<h2 class="h2-ex">图片上传</h2>
+
+<div class="pic-upload-cnt">
+    <ul class="clearfix" bx-tmpl="pics" bx-datakey="pics">
+        {{#pics}}
+        <li><div class="pic-cnt"><img src="{{picPath}}"></div></li>
+        {{/pics}}
+    </ul>
+</div>
+
+<div>
+    <input type="file" name="upload" id="J_upload" multiple="multiple" mx-change="fileChange" />
+</div>
+
+<p>
+    <a href="javascript:;" class="btn btn-size28 mr10" mx-click="confirm">上传</a> 
+    <a href="javascript:;" mx-click="cancel">取消</a>
+</p>

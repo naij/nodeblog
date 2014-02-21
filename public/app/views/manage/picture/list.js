@@ -69,7 +69,7 @@ KISSY.add("app/views/manage/picture/list", function (S, View, MM, VOM, Router, N
             var me = this;
             var top = $('#' + e.currentId).parent('.toolbar').offset().top;
             var dialogConfig = Util.getDefaultDialogConfig({
-                width: 600,
+                width: 620,
                 top: top
             });
             var viewName = 'app/views/manage/picture/add';
