@@ -146,12 +146,14 @@ exports.add = function(req, res, next) {
     }
 
     var type = req.body.type;
+    var tag = req.body.tag;
     var title = sanitize(req.body.title).trim();
     var markdownContent = req.body.content;
     var htmlContent = markdown.makeHtml(markdownContent);
 
     var article = new Article();
     article.type = type;
+    article.tag = tag;
     article.title = title;
     article.content = htmlContent;
     article.markdown = markdownContent.replace(/&/g, "&amp;");

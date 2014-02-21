@@ -7,7 +7,7 @@
             <ul class="union-form">
                 <li class="field">
                     <p class="field-label2">类型</p>
-                    <div bx-name="dropdown" style="width:150px;" class="dropdown" hidefocus="true" id="J_type_dropdown">
+                    <div bx-name="dropdown" style="width:150px;" class="dropdown" hidefocus="true">
                         <span class="dropdown-hd">
                             <span class="dropdown-text" value="kiwiobject">kiwiobject</span>
                             <i class="iconfont icon-arrow-down">&#459</i>
@@ -18,6 +18,29 @@
                             <li class="dropdown-item"><span value="life">life</span><i class="iconfont icon-ok">&#126</i></li>
                         </ul>
                         <input type="hidden" name="type" value="kiwiobject">
+                    </div>
+                </li>
+                <li class="field">
+                    <p class="field-label2">标签</p>
+                    <div bx-name="dropdown" style="width:150px;" class="dropdown" hidefocus="true">
+                        <span class="dropdown-hd">
+                            {{#tag}}
+                            {{#selected}}
+                            <span class="dropdown-text" value="{{tagName}}">{{tagName}}</span>
+                            <i class="iconfont icon-arrow-down">&#459</i>
+                            {{/selected}}
+                            {{/tag}}
+                        </span>
+                        <ul class="dropdown-list">
+                            {{#tag}}
+                            <li class="dropdown-item {{#selected}}dropdown-itemselected{{/selected}}"><span value="{{tagName}}">{{tagName}}</span><i class="iconfont icon-ok">&#126</i></li>
+                            {{/tag}}
+                        </ul>
+                        {{#tag}}
+                        {{#selected}}
+                        <input type="hidden" name="tag" value="{{tagName}}">
+                        {{/selected}}
+                        {{/tag}}
                     </div>
                 </li>
                 <li class="field">

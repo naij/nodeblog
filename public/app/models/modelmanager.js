@@ -63,7 +63,14 @@ KISSY.add("app/models/modelmanager", function (S, BaseManager, BaseModel) {
                 type: 'post'
             }
         },
-
+        // 标签列表
+        {
+            name: 'manage_tag_list',
+            url: '/manage/getTags',
+            options: {
+                type: 'get'
+            }
+        },
         // 获取登录信息
         {
             name: 'login_msg',

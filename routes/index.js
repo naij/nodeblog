@@ -1,5 +1,6 @@
 var site = require('../controllers/site');
 var article = require('../controllers/article');
+var tag = require('../controllers/tag');
 var manage = require('../controllers/manage');
 
 module.exports = function (app) {
@@ -29,6 +30,9 @@ module.exports = function (app) {
 
     // 文章删除
     app.post('/manage/articleDel', article.del);
+
+    // 标签列表
+    app.get('/manage/getTags', tag.getTags);
 
     // 账户信息
     app.get('/loginMsg', manage.loginMsg);

@@ -5,10 +5,20 @@ KISSY.add("app/views/manage/article/add", function (S, View, MM, VOM, Router, No
         },
         render: function () {
             var me = this;
-            me.setViewPagelet({
-            }, function () {
-                me.components();
-            });
+
+            me.manage(MM.fetchAll([{
+                name: "manage_tag_list"
+            }], function (errs, MesModel) {
+                var data = MesModel.get('data');
+
+                data[0].selected = true;
+
+                me.setViewPagelet({
+                    tag: data
+                }, function () {
+                    me.components();
+                });
+            }));
         },
         components: function () {
             var editor = new Editor();
