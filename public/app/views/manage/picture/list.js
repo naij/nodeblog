@@ -15,23 +15,19 @@ KISSY.add("app/views/manage/picture/list", function (S, View, MM, VOM, Router, N
         },
         render: function () {
             var me = this;
-            me.setViewPagelet({
 
-            }, function () {
-                me.components();
-            });
-            // me.manage(MM.fetchAll([{
-            //     name: "manage_picture_list"
-            // }], function (errs, MesModel) {
-            //     var data = MesModel.get('data');
+            me.manage(MM.fetchAll([{
+                name: "picture_list"
+            }], function (errs, MesModel) {
+                var data = MesModel.get('data');
 
-            //     me.setViewPagelet({
-            //         list: data,
-            //         typeList: typeList
-            //     }, function () {
-            //         me.components();
-            //     });
-            // }));
+                me.setViewPagelet({
+                    list: data.list,
+                    pathPrefix: data.pathPrefix
+                }, function () {
+                    me.components();
+                });
+            }));
         },
         components: function () {
             var me = this;

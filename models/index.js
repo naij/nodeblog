@@ -15,9 +15,11 @@ mongoose.connect(db, function (err) {
 // models
 require('./article');
 require('./tag');
+require('./pic');
 require('./user');
 
 exports.Article = mongoose.model('Article');
 exports.Tag = mongoose.model('Tag');
+exports.Pic = mongoose.model('Pic');
 exports.User = mongoose.model('User');
 

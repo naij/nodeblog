@@ -1,3 +1,5 @@
+var crypto = require('crypto');
+
 exports.formatDate = function (date, friendly) {
     var year = date.getFullYear();
     var month = date.getMonth() + 1;
@@ -30,4 +32,12 @@ exports.formatDate = function (date, friendly) {
     second = ((second < 10) ? '0' : '') + second;
 
     return year + '-' + month + '-' + day;
-};
+}
+
+// md5加密
+exports.md5 = function(str) {
+    var md5sum = crypto.createHash('md5');
+    md5sum.update(str);
+    str = md5sum.digest('hex');
+    return str;
+}

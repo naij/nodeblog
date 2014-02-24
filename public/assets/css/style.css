@@ -480,6 +480,21 @@ body{
     background-color: #f1f1f1;
     padding: 10px;
 }
+.pic-list .pic-cnt{
+    background-color: #fff;
+    border: 1px solid #f1f1f1;
+    height: 100px;
+    width: 100px;
+    padding: 5px;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+.pic-list .pic-cnt img{
+    max-height: 100px;
+    max-width: 100px;
+    vertical-align: middle;
+}
 
 /* 登录 */
 .login {

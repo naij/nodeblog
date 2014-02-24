@@ -1,6 +1,7 @@
 var site = require('../controllers/site');
 var article = require('../controllers/article');
 var tag = require('../controllers/tag');
+var pic = require('../controllers/pic');
 var manage = require('../controllers/manage');
 
 module.exports = function (app) {
@@ -33,6 +34,12 @@ module.exports = function (app) {
 
     // 标签列表
     app.get('/manage/getTags', tag.getTags);
+
+    // 图片列表
+    app.get('/manage/getPictures', pic.getPictures);
+
+    // 图片添加
+    app.post('/manage/pictureAdd', pic.add);
 
     // 账户信息
     app.get('/loginMsg', manage.loginMsg);
