@@ -454,12 +454,27 @@ body{
 }
 .pic-upload-cnt li .meta{
     position: absolute;
+    left: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
     width: 100%;
     color: #fff;
     padding: 5px 0;
     text-indent: 1em;
+}
+.pic-upload-cnt li .progress{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 28px;
+    width: 100%;
+}
+.pic-upload-cnt li .progress div{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 28px;
+    background-color: rgba(0, 255, 0, 0.5);
 }
 .pic-upload-input {
     background-color: #f1f1f1;
