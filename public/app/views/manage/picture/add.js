@@ -119,6 +119,9 @@ KISSY.add("app/views/manage/picture/add", function (S, View, MM, VOM, Router, No
             var files = $('#J_upload')[0].files;
 
             me.uploadFile(files);
+        },
+        'cancel<click>': function (e) {
+            Util.hideDialog();
         }
     });
 },{
