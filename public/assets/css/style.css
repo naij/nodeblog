@@ -422,14 +422,12 @@ body{
 .pic-upload-cnt {
     border: 1px solid #eee;
     border-radius: 3px;
-    height: 200px;
-    overflow: auto;
-    margin-bottom: 10px;
-    padding: 10px;
-    width: 540px;
+    margin-bottom: 20px;
 }
 .pic-upload-cnt ul {
-    width: 550px;
+    height: 200px;
+    overflow: auto;
+    padding: 10px;
 }
 .pic-upload-cnt li {
     float: left;
@@ -437,11 +435,11 @@ body{
     border-radius: 1px;
     margin-right: 10px;
     margin-bottom: 10px;
+    position: relative;
 }
 .pic-upload-cnt li:hover {
     border-color: #00A8FF;
 }
-
 .pic-upload-cnt li .pic-cnt{
     height: 100px;
     width: 100px;
@@ -453,6 +451,19 @@ body{
     max-height: 100px;
     max-width: 100px;
     vertical-align: middle;
+}
+.pic-upload-cnt li .meta{
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    color: #fff;
+    padding: 5px 0;
+    text-indent: 1em;
+}
+.pic-upload-input {
+    background-color: #f1f1f1;
+    padding: 10px;
 }
 
 /* 登录 */

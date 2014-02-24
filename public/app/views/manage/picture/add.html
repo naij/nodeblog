@@ -3,16 +3,22 @@
 <div class="pic-upload-cnt">
     <ul class="clearfix" bx-tmpl="pics" bx-datakey="pics">
         {{#pics}}
-        <li><div class="pic-cnt"><img src="{{picPath}}"></div></li>
+        <li>
+            <div class="pic-cnt">
+                <img src="{{filePath}}" />
+            </div>
+            <div class="meta">
+                {{fileSize}}
+            </div>
+        </li>
         {{/pics}}
     </ul>
-</div>
-
-<div>
-    <input type="file" name="upload" id="J_upload" multiple="multiple" mx-change="fileChange" />
+    <div class="pic-upload-input">
+        <input type="file" name="upload" id="J_upload" multiple="multiple" mx-change="fileChange" />
+    </div>
 </div>
 
 <p>
-    <a href="javascript:;" class="btn btn-size28 mr10" mx-click="confirm">上传</a> 
+    <a href="javascript:;" class="btn btn-size28 mr10" mx-click="upload">上传</a> 
     <a href="javascript:;" mx-click="cancel">取消</a>
 </p>
