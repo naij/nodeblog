@@ -15,14 +15,35 @@ KISSY.add("app/views/manage/picture/list", function (S, View, MM, VOM, Router, N
         },
         render: function () {
             var me = this;
+            var loc = me.location;
+            var params = S.clone(loc.params);
+            var startTime = params.startTime;
+            var endTime = params.endTime;
+
+            if(startTime && endTime) {
+                startTime = Util.dateParse(startTime);
+                endTime = Util.dateParse(endTime);
+            } else {
+                startTime = Util.dateRecent(-6);
+                endTime = Util.dateRecent(0);
+            }
+
+            me.manage('startTime', startTime);
+            me.manage('endTime', endTime);
 
             me.manage(MM.fetchAll([{
-                name: "picture_list"
+                name: "picture_list",
+                urlParams: {
+                    startTime: startTime,
+                    endTime: endTime
+                }
             }], function (errs, MesModel) {
                 var data = MesModel.get('data');
 
                 me.setViewPagelet({
                     list: data.list,
+                    startTime: Util.dateFormat(startTime),
+                    endTime: Util.dateFormat(endTime),
                     pathPrefix: data.pathPrefix
                 }, function () {
                     me.components();
@@ -32,6 +53,8 @@ KISSY.add("app/views/manage/picture/list", function (S, View, MM, VOM, Router, N
         components: function () {
             var me = this;
             var pagelet = me.getManaged('pagelet');
+            var startTime = me.getManaged('startTime');
+            var endTime = me.getManaged('endTime');
 
             // 日历
             var calendar = new Calendar({
@@ -46,8 +69,8 @@ KISSY.add("app/views/manage/picture/list", function (S, View, MM, VOM, Router, N
                 popup: true,
                 triggerType: ['click'],
                 range: {
-                    start: new Date('2014-02-01'),
-                    end: new Date('2014-02-18')
+                    start: startTime,
+                    end: endTime
                 },
                 autoRender: false
             });
@@ -56,6 +79,8 @@ KISSY.add("app/views/manage/picture/list", function (S, View, MM, VOM, Router, N
                 calendar.hide();
                 var startTime = Calendar.Date.format(e.start,'yyyy-mm-dd');
                 var endTime = Calendar.Date.format(e.end,'yyyy-mm-dd');
+
+                me.navigate('startTime=' + startTime + '&endTime=' + endTime);
             });
 
             me.manage('calendar', calendar);

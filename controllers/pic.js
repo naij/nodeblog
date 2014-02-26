@@ -7,7 +7,10 @@ var util = require('../libs/util');
 var Pic = models.Pic;
 
 exports.getPictures = function (req, res, next) {
-    Pic.find(function(err, doc) {
+    var startTime = req.query.startTime;
+    var endTime = req.query.endTime;
+
+    Pic.find({"uploadTime": {$gte:new Date(startTime),$lte:new Date(endTime)}}, function(err, doc) {
         if (err) {
             res.json({
                 data: null,

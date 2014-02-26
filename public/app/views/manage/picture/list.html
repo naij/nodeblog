@@ -7,10 +7,10 @@
     <div class="toolbar clearfix">
         <a href="#" class="btn btn-size25" mx-click="add">上传图片</a>
         <div class="table-settings">
-            <a class="btn btn-size25" id="J_calendar" href="#"> 2014-02-11 至  2014-02-18 </a>
+            <a class="btn btn-size25" id="J_calendar" href="#" bx-tmpl="calendar" bx-datakey="startTime,endTime"> {{startTime}} 至  {{endTime}} </a>
         </div>
     </div>
-    <table class="table pic-list" bx-name="tables" bx-tmpl="list" bx-datakey="list">
+    <table class="table pic-list" bx-name="tables" bx-tmpl="list" bx-datakey="list,pathPrefix">
         <thead>
             <tr {{^list}}class="no-data"{{/list}}>
                 <th class="left" width="120">图片预览</th>
@@ -24,11 +24,11 @@
             <tr>
                 <td class="left">
                     <div class="pic-cnt">
-                        <img src="{{pathPrefix}}{{picPath}}" />
+                        <a href="{{pathPrefix}}{{picPath}}" target="_blank"><img src="{{pathPrefix}}{{picPath}}" /></a>
                     </div>
                 </td>
                 <td class="left">
-                    <input value="{{pathPrefix}}{{picPath}}" class="input" />
+                    <textarea class="textarea">{{pathPrefix}}{{picPath}}</textarea>
                 </td>
                 <td class="left">{{picSize}}</td>
                 <td class="left">{{uploadTime}}</td>
