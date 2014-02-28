@@ -1,4 +1,5 @@
 var fs = require('fs');
+var gm = require('gm').subClass({ imageMagick : true });
 var models = require('../models');
 var upyun = require('../models/upyun').upyun;
 var config = require('../config').config;
@@ -10,7 +11,7 @@ exports.getPictures = function (req, res, next) {
     var startTime = req.query.startTime;
     var endTime = req.query.endTime;
 
-    Pic.find({"uploadTime": {$gte:new Date(startTime),$lte:new Date(endTime)}}, function(err, doc) {
+    Pic.find({"uploadTime": {$gte:new Date(startTime),$lte:new Date(endTime)}}, function (err, doc) {
         if (err) {
             res.json({
                 data: null,
@@ -45,13 +46,12 @@ exports.getPictures = function (req, res, next) {
 }
 
 exports.add = function (req, res, next) {
-    // var r = req;
-
     var pic = req.files && req.files.pic;
     var fileName = pic.name;
     var tempPath = pic.path;
     var extension = fileName.substr(fileName.lastIndexOf('.'), fileName.length);
     var picName = util.md5((new Date()).getTime().toString()) + extension;
+    var picContent = fs.readFileSync(tempPath);
 
     var render = function () {
         res.json({
@@ -67,7 +67,7 @@ exports.add = function (req, res, next) {
     proxy.assign('file_upload', 'data_update', render);
 
     // 上传到又拍云
-    upyun.writeFile('/c/' + picName, fs.readFileSync(tempPath), true, function (err, data) {
+    upyun.writeFile('/c/' + picName, picContent, true, function (err, data) {
         if (!err) {
             fs.unlink(tempPath, function () {
                 if (err) {
@@ -79,13 +79,15 @@ exports.add = function (req, res, next) {
     });
 
     // 保存到数据库
-    var pic = new Pic();
-    pic.picPath = '/c/' + picName;
-    pic.picSize = '';
-    pic.save(function (err) {
-        if (err) {
-            return next(err);
-        }
-        proxy.trigger('data_update');
+    gm(tempPath).size(function (err, size) {
+        var pic = new Pic();
+        pic.picPath = '/c/' + picName;
+        pic.picSize = size.width + 'x' + size.height;
+        pic.save(function (err) {
+            if (err) {
+                return next(err);
+            }
+            proxy.trigger('data_update');
+        });
     });
 }
