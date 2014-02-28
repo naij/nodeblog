@@ -10,8 +10,11 @@ var Pic = models.Pic;
 exports.getPictures = function (req, res, next) {
     var startTime = req.query.startTime;
     var endTime = req.query.endTime;
+    startTime = new Date(startTime);
+    endTime = new Date(endTime);
+    endTime.setDate(endTime.getDate() + 1);
 
-    Pic.find({"uploadTime": {$gte:new Date(startTime),$lte:new Date(endTime)}}, function (err, doc) {
+    Pic.find({"uploadTime": {$gte: startTime,$lte: endTime}}, function (err, doc) {
         if (err) {
             res.json({
                 data: null,
