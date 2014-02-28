@@ -2,6 +2,9 @@ KISSY.add("app/views/manage/picture/add", function (S, View, MM, VOM, Router, No
     var $ = Node.all;
 
     return View.extend({
+        init: function (e) {    
+            this.manage('data', e);
+        },
         locationChange: function (e) {
             this.render();
         },
@@ -100,7 +103,10 @@ KISSY.add("app/views/manage/picture/add", function (S, View, MM, VOM, Router, No
             }
 
             function uploadComplete(evt) {
-                S.log(evt);
+                if (index == files.length) {
+                    Util.hideDialog();
+                    me.getManaged('data').callback();
+                }
             }
 
             function uploadFailed(evt) {
