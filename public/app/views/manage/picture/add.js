@@ -69,7 +69,7 @@ KISSY.add("app/views/manage/picture/add", function (S, View, MM, VOM, Router, No
                     var xhr = new XMLHttpRequest();
                     // 进度条            
                     xhr.upload.addEventListener("progress", uploadProgress, false);
-                    // 下载
+                    // 上传完成
                     xhr.addEventListener("load", uploadComplete, false);
                     // 错误信息
                     xhr.addEventListener("error", uploadFailed, false);
