@@ -8,9 +8,7 @@
                 <img src="{{filePath}}" />
             </div>
             <div class="meta">
-                <div class="progress" bx-tmpl="progress" bx-datakey="progress,fileSize">
-                    <div style="width:{{progress}}%;"></div>
-                </div>
+                <div class="progress progress{{__index__}}"></div>
                 {{fileSize}}
             </div>
         </li>

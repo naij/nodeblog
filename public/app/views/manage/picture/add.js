@@ -91,18 +91,17 @@ KISSY.add("app/views/manage/picture/add", function (S, View, MM, VOM, Router, No
                     // evt.loaded：文件上传的大小   
                     // evt.total：文件总的大小
                     var percentComplete = Math.round((evt.loaded) * 100 / evt.total);
-                    // 加载进度条，同时显示信息
-                    pagelet.setChunkData('progress', percentComplete.toString());
 
-                    // 如果上传的结果是100时才让加载下一个文件。如果不够100会继续上传原来的文档。
-                    if (percentComplete == 100) {
-                        index ++;
-                        upload();
-                    }
+                    // 加载进度条，同时显示信息
+                    var progressBar = $('.progress' + index);
+                    progressBar.html('<div style="width:' + percentComplete.toString() + '%;"></div>');
                 }
             }
 
             function uploadComplete(evt) {
+                index ++;
+                upload();
+
                 if (index == files.length) {
                     Util.hideDialog();
                     me.getManaged('data').callback();

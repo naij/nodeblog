@@ -13,8 +13,8 @@ exports.config = {
   	cookie_name: 'kiwi_blog',
 
     // 又拍云账户
-    upyun_buckname : 'kiwiobjects',
+    upyun_buckname : 'kiwipics',
     upyun_username : 'wolongxzg',
     upyun_password : 'wang354438',
-    upyun_path : 'http://kiwiobjects.b0.upaiyun.com'
+    upyun_path : 'http://kiwipics.b0.upaiyun.com'
 };
