@@ -220,52 +220,49 @@ exports.del = function(req, res, next) {
     });
 }
 
-/**
- * 根据标签筛选文章
- * @param  {[type]}   req  [description]
- * @param  {[type]}   res  [description]
- * @param  {Function} next [description]
- */
-exports.tag = function(req, res, next) {
-    var tag = req.params.tag;
-
-    var render = function(article, recentArticle) {
-        res.render('index', {
-            article: article,
-            recentArticle: recentArticle
-        });
-    }
-
-    var proxy = EventProxy.create('article', 'recentArticle', render);
-
-    getArticleByTag(tag,function(err, data) {
-        if (err) {
-            next(err);
+exports.archive = function (req, res, next) {
+    Article.aggregate({
+        $group: {
+            _id: { $dayOfYear: "$update"}, 
+            list: {
+                $push: {title: "$title"}
+            }
         }
+    }, function(err, doc) {
 
-        for(var i = 0; i < data.length; i++) {
-            tempDate = util.formatDate(data[i].update);
-            data[i].publishDate = tempDate;
-        }
-
-        proxy.emit('article',data);
+        console.log(doc);
+        res.json({
+            data: doc,
+            info: {
+                ok: true,
+                msg: null
+            }
+        })
     });
+}
 
-    getFullArticle(function(err, data) {
-        if (err) {
-            next(err);
+exports.getTags = function(req, res, next) {
+    Article.aggregate({
+        $group: {
+            _id: "$tag", 
+            count: {
+                $sum: 1
+            }
         }
-
-        var tempDate = '';
-
-        for(var i = 0; i < data.length; i++) {
-            tempDate = util.formatDate(data[i].update);
-            data[i].publishDate = tempDate;
+    }, {
+        $project: {
+            _id: 0,
+            tag: "$_id",
+            count: "$count"
         }
-
-        var recentArticle = data.slice(0, 5);
-
-        proxy.emit('recentArticle',recentArticle);
+    }, function(err, doc) {
+        res.json({
+            data: doc,
+            info: {
+                ok: true,
+                msg: null
+            }
+        })
     });
 }
 
@@ -288,7 +285,9 @@ function getArticleByTag(tag, callback) {
 }
 
 function getFullArticle(type, callback) {
-    Article.find({type: type}, null, {sort:[['update','desc']]}, function(err, doc) {
+    // 将查询结果按时间倒序，因为 MongoDB 的 _id 生成算法中已经包含了当前的时间，
+    // 所以这样写不仅没问题，也是推荐的按时间排序的写法。
+    Article.find({type: type}).sort({"_id": -1}).exec(function(err, doc) {
         if (err) return callback(err);
         callback(null, doc);
     });

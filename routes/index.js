@@ -14,6 +14,12 @@ module.exports = function (app) {
     // 文章详情
     app.get('/article/getArticleById', article.getArticleById);
 
+    // 归档
+    app.get('/article/archive', article.archive);
+
+    // 标签
+    app.get('/article/getTags', article.getTags);
+
     // 后台路由过滤
     app.all('/manage/*', manage.userAuth);
 

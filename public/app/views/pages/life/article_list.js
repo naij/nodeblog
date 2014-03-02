@@ -11,7 +11,7 @@ KISSY.add("app/views/pages/life/article_list", function (S, View, MM, VOM, Route
             me.manage(MM.fetchAll([{
                 name: "article_list",
                 urlParams: {
-                	type: 'life'
+                    type: 'life'
                 }
             }], function (errs, MesModel) {
                 var data = MesModel.get('data');

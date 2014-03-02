@@ -50,10 +50,7 @@ KISSY.add("app/models/modelmanager", function (S, BaseManager, BaseModel) {
         // 图片列表
         {
             name: 'picture_list',
-            url: '/manage/getPictures',
-            options: {
-                type: 'get'
-            }
+            url: '/manage/getPictures'
         },
         // 图片添加
         {
@@ -66,10 +63,17 @@ KISSY.add("app/models/modelmanager", function (S, BaseManager, BaseModel) {
         // 标签列表
         {
             name: 'manage_tag_list',
-            url: '/manage/getTags',
-            options: {
-                type: 'get'
-            }
+            url: '/manage/getTags'
+        },
+        // 归档
+        {
+            name: 'archive',
+            url: '/article/archive'
+        },
+        // 标签
+        {
+            name: 'tag_list',
+            url: '/article/getTags'
         },
         // 获取登录信息
         {

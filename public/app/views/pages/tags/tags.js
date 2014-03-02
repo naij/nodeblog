@@ -8,7 +8,15 @@ KISSY.add("app/views/pages/tags/tags", function (S, View, MM, VOM, Router, Node,
         render: function () {
             var me = this;
 
-            me.setViewPagelet();
+            me.manage(MM.fetchAll([{
+                name: "tag_list"
+            }], function (errs, MesModel) {
+                var data = MesModel.get('data');
+                
+                me.setViewPagelet({
+                    list: data
+                });
+            }));
         }
     });
 },{

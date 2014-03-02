@@ -1,1 +1,16 @@
-tags
+<div class="wrap-hd clearfix">
+    <div class="title-bar">
+        <h2 class="title">标签</h2>
+    </div>
+</div>
+
+<ul class="tag-list clearfix">
+    {{#list}}
+    <li>
+        <a href="#!/pages/tag/tags?tag={{tag}}">
+            <span class="count">{{count}}</span>
+            {{tag}}
+        </a>
+    </li>
+    {{/list}}
+</ul>

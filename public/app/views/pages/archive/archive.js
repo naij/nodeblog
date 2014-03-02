@@ -8,7 +8,16 @@ KISSY.add("app/views/pages/archive/archive", function (S, View, MM, VOM, Router,
         render: function () {
             var me = this;
 
-            me.setViewPagelet();
+            me.manage(MM.fetchAll([{
+                name: "article_list"
+            }], function (errs, MesModel) {
+                var data = MesModel.get('data');
+                S.log(data);
+
+                me.setViewPagelet({
+                    list: data
+                });
+            }));
         }
     });
 },{

@@ -418,7 +418,38 @@ body{
     color: #FFF;
 }
 
-/*  */
+/* 标签 */
+.tag-list li{
+    float: left;
+}
+.tag-list a{
+    float: left;
+    height: 100px;
+    width: 200px;
+    text-align: center;
+    line-height: 100px;
+    position: relative;
+    border: 1px solid #efefef;
+    border-radius: 3px;
+    margin: 0 15px 15px 0;
+    font-size: 18px;
+}
+.tag-list .count {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border-radius: 3px;
+    height: 18px;
+    width: 18px;
+    line-height: 18px;
+    text-align: center;
+    font-size: 12px;
+    color: #fff;
+    background-color: #00A8FF;
+}
+
+
+/* 图片上传 */
 .pic-upload-cnt {
     border: 1px solid #eee;
     border-radius: 3px;
