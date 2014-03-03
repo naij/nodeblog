@@ -466,6 +466,18 @@ body{
     margin-left: 20px;
 }
 
+/* archive */
+.archive dt{
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.archive dd{
+    margin-bottom: 20px;
+}
+.archive dd a{
+    color: #00A8FF;
+}
+
 
 /* 图片上传 */
 .pic-upload-cnt {

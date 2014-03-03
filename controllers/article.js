@@ -260,17 +260,29 @@ exports.del = function(req, res, next) {
     });
 }
 
+// 归档
 exports.archive = function (req, res, next) {
     Article.aggregate({
         $group: {
-            _id: { $dayOfYear: "$update"}, 
+            _id: {
+                year: { $year: "$update" },
+                month: { $month: "$update" }
+            },
             list: {
-                $push: {title: "$title"}
+                $push: {
+                    "id": "$_id",
+                    "title": "$title",
+                    "type": "$type"
+                }
             }
         }
+    }, {
+        $project: {
+            _id: 0,
+            time: "$_id",
+            list: "$list"
+        }
     }, function(err, doc) {
-
-        console.log(doc);
         res.json({
             data: doc,
             info: {
@@ -281,6 +293,7 @@ exports.archive = function (req, res, next) {
     });
 }
 
+// 标签
 exports.getTags = function(req, res, next) {
     Article.aggregate({
         $group: {
