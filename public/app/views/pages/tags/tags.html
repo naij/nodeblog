@@ -31,16 +31,17 @@
             <h2 class="title">标签</h2>
         </div>
     </div>
-
-    <ul class="tag-list clearfix">
-        {{#list}}
-        <li>
-            <a href="#!/pages/tags/tags?tag={{tag}}">
-                <span class="count">{{count}}</span>
-                {{tag}}
-            </a>
-        </li>
-        {{/list}}
-    </ul>
+    <div class="tag-list">
+        <ul class="clearfix">
+            {{#list}}
+            <li>
+                <a href="#!/pages/tags/tags?tag={{tag}}">
+                    <span class="count">{{count}}</span>
+                    {{tag}}
+                </a>
+            </li>
+            {{/list}}
+        </ul>
+    </div>
     {{/tag}}
 </div>
