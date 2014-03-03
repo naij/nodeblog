@@ -457,6 +457,16 @@ body{
     color: #ccc;
 }
 
+/* about */
+.about dt,
+.about dd{
+    float: left;
+}
+.about dd{
+    margin-left: 20px;
+}
+
+
 /* 图片上传 */
 .pic-upload-cnt {
     border: 1px solid #eee;
