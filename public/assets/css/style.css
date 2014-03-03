@@ -294,9 +294,7 @@ body{
 }
 .article-list .list-item {
     border-bottom: 1px solid #ecedef;
-    padding-bottom: 50px;
     margin-bottom: 30px;
-    position: relative;
 }
 .article-list .list-item .hd {
     position: relative;
@@ -331,17 +329,22 @@ body{
 .article-list .list-item .meta .iconfont{
     font-size: 12px;
 }
-
 .article-list .list-item .bd {
     margin-top: 30px;
     line-height: 1.8;
     color: #666;
 }
 .article-list .list-item .ft {
-    position: absolute;
-    bottom: 10px;
-    left: 0;
-    width: 720px;
+    height: 50px;
+    margin-top: 30px;
+    position: relative;
+}
+.article-list .list-item .ft .continue-reading{
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #00A8FF;
+    border-radius: 3px;
+    color: #fafafa;
 }
 .article-list .list-item .ft .tag {
     font: left;
