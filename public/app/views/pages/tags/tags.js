@@ -7,16 +7,41 @@ KISSY.add("app/views/pages/tags/tags", function (S, View, MM, VOM, Router, Node,
         },
         render: function () {
             var me = this;
+            var loc = me.location;
+            var params = loc.params;
+            var tag = params.tag;
 
-            me.manage(MM.fetchAll([{
-                name: "tag_list"
-            }], function (errs, MesModel) {
-                var data = MesModel.get('data');
-                
-                me.setViewPagelet({
-                    list: data
-                });
-            }));
+            if (tag) {
+                me.manage(MM.fetchAll([{
+                    name: "article_list_by_tag",
+                    urlParams: {
+                        tag: tag
+                    }
+                }], function (errs, MesModel) {
+                    var data = MesModel.get('data');
+                    
+                    for (var i = 0; i < data.length; i++) {
+                        data[i].content = data[i].content.replace(/<[^>]+>/g, '');
+                        data[i].content = data[i].content.substring(0, 300) + ' ... ...';
+                    }
+
+                    me.setViewPagelet({
+                        tag: tag,
+                        list: data
+                    });
+                }));
+            } else {
+                me.manage(MM.fetchAll([{
+                    name: "tag_list"
+                }], function (errs, MesModel) {
+                    var data = MesModel.get('data');
+                    
+                    me.setViewPagelet({
+                        tag: '',
+                        list: data
+                    });
+                }));
+            }
         }
     });
 },{

@@ -11,7 +11,11 @@ KISSY.add("app/models/modelmanager", function (S, BaseManager, BaseModel) {
             name: 'article_detail',
             url: '/article/getArticleById'
         },
-
+        // 根据标签获取文章列表
+        {
+            name: 'article_list_by_tag',
+            url: '/article/getArticleByTag'
+        },
         // 获取文章列表
         {
             name: 'manage_article_list',

@@ -85,6 +85,46 @@ exports.getArticleById = function(req, res, next) {
 };
 
 /**
+ * 根据tag获取文章列表
+ * @param  {[type]}   req  [description]
+ * @param  {[type]}   res  [description]
+ * @param  {Function} next [description]
+ */
+exports.getArticleByTag = function(req, res, next) {
+    var tag = req.query.tag;
+
+    getArticleByTag(tag, function(err, data) {
+        if (err) {
+            res.json({
+                data: null,
+                info: {
+                    ok: false,
+                    msg: '查询出错'
+                }
+            });
+
+            return false;
+        }
+
+        var list = [];
+
+        for (var i = 0; i < data.length; i++) {
+            var temp = data[i].toJSON();
+            temp['publishDate'] = util.formatDate(temp.update);
+            list.push(temp);
+        }
+
+        res.json({
+            data: list,
+            info: {
+                ok: true,
+                msg: null
+            }
+        });
+    });
+};
+
+/**
  * 获取文章编辑内容并保存到数据库
  * @param  {[type]}   req  [description]
  * @param  {[type]}   res  [description]

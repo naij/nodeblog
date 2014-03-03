@@ -20,6 +20,9 @@ module.exports = function (app) {
     // 标签
     app.get('/article/getTags', article.getTags);
 
+    // 根据标签获取文章列表
+    app.get('/article/getArticleByTag', article.getArticleByTag);
+
     // 后台路由过滤
     app.all('/manage/*', manage.userAuth);
 
