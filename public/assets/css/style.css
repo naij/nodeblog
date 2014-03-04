@@ -45,7 +45,7 @@ body{
 .switch-loading {
     height: 3px;
     overflow: hidden;
-    background-color: #06d;
+    background-color: #00A8FF;
     display: block;
     position: fixed;
     _position: absolute;
@@ -212,7 +212,7 @@ body{
     padding-right: 1em;
 }
 #header {
-    
+    background-color: #f4f4f4;
 }
 .header-bd {
     height: 70px;
@@ -232,13 +232,12 @@ body{
 .site-nav{
     width: 1000px;
     margin: 0 auto;
-    background-color: rgb(33, 33, 33);
 }
 .site-nav li{
     float: left;
 }
 .site-nav a{
-    color: #fff;
+    color: #aaa;
     float: left;
     height: 40px;
     line-height: 40px;
@@ -248,7 +247,8 @@ body{
     text-align: center;
 }
 .site-nav li.selected a{
-    background-color: rgb(80, 80, 80);
+    background-color: #ddd;
+    color: #666;
 }
 .header-bd .login-info {
     color: #eee;
@@ -465,6 +465,10 @@ body{
 .about dd{
     margin-left: 20px;
 }
+.about dd li{
+    font-size: 14px;
+    margin-bottom: 5px;
+}
 
 /* archive */
 .archive dt{
@@ -606,9 +610,23 @@ body{
 }
 
 #footer {
-    border-top: 1px solid #efefef;
+    background-color: #fff;
+    padding: 40px 0;
+}
+#footer .copyright{
     width: 1000px;
     margin: 0 auto;
-    padding: 20px 0;
 }
-
+#footer .footer-logo,
+#footer .footer-license{
+    float: left;
+}
+#footer .footer-logo a{
+    color: #ccc;
+    font-size: 24px;
+    line-height: 1;
+}
+#footer .footer-license{
+    margin-left: 20px;
+    margin-top: 8px;
+}

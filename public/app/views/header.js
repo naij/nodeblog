@@ -15,24 +15,28 @@ KISSY.add("app/views/header", function (S, View, Node, MM) {
                 '/pages/life/article_detail': '/pages/life/article_list'
             }
 
-            function navSelected () {
-                var siteNav = $('.site-nav li');
-                siteNav.each(function (node) {
-                    var nodeHref = node.one('a').attr('href');
-                    nodeHref = nodeHref.substring(2);
-                    if (!path || nodeHref == path || nodeHref == pathMap[path]) {
-                        siteNav.removeClass('selected');
-                        node.addClass('selected');
-                    }
-                });
-            }
-
             me.setViewPagelet({
+                
             }, function () {
                 navSelected();
             }, function () {
                 navSelected();
             });
+
+            function navSelected () {
+                var siteNav = $('.site-nav li');
+                siteNav.each(function (node) {
+                    var nodeHref = node.one('a').attr('href');
+                    nodeHref = nodeHref.substring(2);
+                    siteNav.removeClass('selected');
+
+                    if (!path || nodeHref == path || nodeHref == pathMap[path]) {
+                        node.addClass('selected');
+
+                        return false;
+                    }
+                });
+            }
         }
     });
 }, {
