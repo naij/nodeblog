@@ -250,18 +250,6 @@ body{
     background-color: #ddd;
     color: #666;
 }
-.header-bd .login-info {
-    color: #eee;
-    background: #999;
-    padding: 5px 10px;
-    position: absolute;
-    right: 0;
-    top: 0;
-}
-.header-bd .login-info a {
-    color: #eee;
-}
-
 
 #content {
     background: #fff;
