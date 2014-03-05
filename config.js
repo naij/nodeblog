@@ -1,7 +1,7 @@
 exports.config = {
     debug: true,
-    name: 'Kiwi\'s Blog',
-    description: 'Kiwi\'s Blog',
+    name: 'KIWI BLOG',
+    description: 'KIWI BLOG',
     version: '0.1',
 
     // 静态资源
