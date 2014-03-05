@@ -9,7 +9,7 @@ a:hover {
     -webkit-transition: color .15s linear , background-color .2s linear;
 }
 body{
-    background-color: #e9edf0;
+    background-color: #eee;
     min-width:1024px;
 }
 
@@ -153,7 +153,6 @@ body{
     margin-top:5px;
 }
 
-
 /* 提示*/
 .tip {
     padding: 8px 35px 8px 14px;
@@ -211,6 +210,7 @@ body{
 .blank {
     padding-right: 1em;
 }
+
 #header {
     background-color: #f4f4f4;
 }
@@ -221,13 +221,14 @@ body{
     position: relative;
 }
 .header-bd .title {
-    font-size: 42px;
+    font-size: 36px;
+    font-weight: bold;
     position: absolute;
-    top: 0;
+    top: 6px;
     left: 0;
 }
 .header-bd .title a {
-    color: #333;
+    color: #444;
 }
 .site-nav{
     width: 1000px;
