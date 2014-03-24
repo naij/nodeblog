@@ -270,3 +270,9 @@
 .markdown-body pre ol{
     padding-left: 0;
 }
+.markdown-body code {
+    border-radius: 3px;
+    background-color: #f7f7f9;
+    border: 1px solid #e1e1e8;
+    padding: 0 5px;
+}
