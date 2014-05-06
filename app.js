@@ -1,12 +1,9 @@
 var express = require('express');
 var ejs = require('ejs');
-var fs = require('fs');
 var path = require('path');
 var routes = require('./routes');
-var manage = require('./controllers/manage');
 var config = require('./config').config;
 var app = express();
-var pidfile = path.join(__dirname, 'app.pid');
 
 app.configure(function () {
     app.set('views', __dirname + '/views');
@@ -24,8 +21,6 @@ app.configure(function () {
         next();
     });
     app.use(app.router);
-
-    fs.writeFileSync(pidfile, process.pid);
 });
 
 app.configure('development', function () {
@@ -43,10 +38,4 @@ routes(app);
 
 app.listen(3000);
 
-// 退出进程
-process.on('SIGTERM', function () {
-    if (fs.existsSync(pidfile)) {
-        fs.unlinkSync(pidfile);
-    }
-    process.exit(0);
-});
+console.log(process.env.NODE_ENV);
