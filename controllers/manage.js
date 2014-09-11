@@ -1,6 +1,6 @@
 var sanitize = require('validator').sanitize;
 var crypto = require('crypto');
-var config = require('../config').config;
+var config = require('config');
 var models = require('../models');
 var User = models.User;
 

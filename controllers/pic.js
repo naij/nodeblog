@@ -1,8 +1,8 @@
 var fs = require('fs');
 var gm = require('gm').subClass({ imageMagick : true });
+var config = require('config');
 var models = require('../models');
 var upyun = require('../models/upyun').upyun;
-var config = require('../config').config;
 var EventProxy = require('eventproxy').EventProxy;
 var util = require('../libs/util');
 var Pic = models.Pic;
