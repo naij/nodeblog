@@ -1,0 +1,154 @@
+/**
+ * 公用变量
+ **/
+@orange: #FF6600;
+
+@green: #5aa62e;
+
+@red: red;
+
+@layout-width: 1000px;
+
+/**
+ * 公用方法
+ **/
+.border-radius (@radius) {
+    -moz-border-radius: @radius;
+    -webkit-border-radius: @radius;
+    -ms-border-radius: @radius;
+    -o-border-radius: @radius;
+    border-radius: @radius;
+}
+.box-shadow (@value) {
+    -moz-box-shadow: @value;
+    -webkit-box-shadow: @value;
+    -ms-box-shadow: @value;
+    -o-box-shadow: @value;
+    box-shadow: @value;
+}
+.box-sizing(@value){
+    -moz-box-shadow: @value;
+    -webkit-box-shadow: @value;
+    box-shadow: @value;
+}
+.auto-height (@height) {
+    height: auto !important;
+    height: @height;
+    min-height: @height;
+}
+.opacity (@value) {
+    @opacityPercentage: @value * 100;
+    opacity: @value;
+    filter:alpha(opacity=@opacityPercentage);
+}
+.transition (@value) {
+    transition: @value;
+    -moz-transition: @value;
+    -webkit-transition: @value;
+    -ms-transition: @value;
+    -o-transition: @value;
+}
+.transform (@value) {
+    -webkit-transform: @value;
+    -moz-transform: @value;
+    -ms-transform: @value;
+    -o-transform: @value;
+}
+.animation (@value) {
+    -webkit-animation: @value;
+    -moz-animation: @value;
+    -ms-animation: @value;
+    -o-animation: @value;
+    animation: @value;
+}
+.retina (@bg1, @bg2, @bgie6) {
+    background: url(@bg1);
+    background-image: -webkit-image-set(url(@bg1) 1x,url(@bg2) 2x);
+    background-image: -moz-image-set(url(@bg1) 1x,url(@bg2) 2x);
+    background-image: -ms-image-set(url(@bg1) 1x,url(@bg2) 2x);
+    background-image: -o-image-set(url(@bg1) 1x,url(@bg2) 2x);
+    _background-image: url(@bgie6);
+    background-repeat: no-repeat;
+}
+
+/**
+ * 反选颜色
+ **/
+/* Webkit,Opera9.5+,Ie9+ */
+::selection {
+    background-color: #fdd080;
+}
+/* Mozilla Firefox */
+::-moz-selection {
+    background-color: #fdd080;
+}
+
+/**
+ * iconfont
+ **/
+@font-face {
+    font-family: "iconfont-pub";
+    font-weight: normal;
+    font-style: normal;
+    src: url("http://at.alicdn.com/t/font_1409824422_3499794.eot");
+    src: url("http://at.alicdn.com/t/font_1409824422_3499794.eot?#iefix") format("embedded-opentype"), url("http://at.alicdn.com/t/font_1409824422_3499794.woff") format("woff"), url("http://at.alicdn.com/t/font_1409824422_3499794.ttf") format("truetype"), url("http://at.alicdn.com/t/font_1409824422_3499794.svg#iconfont") format("svg");
+}
+
+.iconfont-pub{
+    font-family: "iconfont-pub";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    display: inline-block;
+    /* 1 */
+    speak: none;
+    /* 2 */
+    -webkit-font-smoothing: antialiased;
+    /* 3 */
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/**
+ * 防止a标签在mac下闪速
+ **/
+body {
+    -webkit-font-smoothing: antialiased;
+}
+
+/**
+ * 链接定义
+ **/
+a {
+    color: #333;
+    text-decoration: none;
+}
+a:hover {
+    color: @orange;
+}
+
+/**
+ * 全局可用的颜色
+ **/
+.color-orange {
+    color: @orange;
+}
+
+/**
+ * 外链
+ **/
+.outter-link {
+    color: @orange;
+
+    &:hover {
+        color: #ff1100;
+    }
+}
+
+/**
+ * 组件样式重置
+ **/
+.input,
+.textarea {
+    margin-bottom: 0px;
+}

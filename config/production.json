@@ -3,7 +3,7 @@
     "version": "0.1",
 
     // 静态资源
-    "staticCDN": "",
+    "staticCDN": "/build",
 
     "db": "mongodb://127.0.0.1:27017/kiwiobject",
     "session_secret": "kiwi_blog",
