@@ -7,6 +7,8 @@ var manage = require('../controllers/manage');
 module.exports = function (app) {
 
     app.get('/', site.index);
+    app.get('/index_debug', site.index_debug);
+
 
     // 文章列表
     app.get('/article/getArticles', article.getArticles);

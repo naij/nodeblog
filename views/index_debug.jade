@@ -1,28 +1,18 @@
 extends layout
 
-block html
-  doctype html
-  html
-    head
-      meta(charset='utf-8')
-      title KIWI BLOG
-      meta(name='description', content='KIWI BLOG')
-      meta(name='keywords', content='KIWI BLOG')
-      meta(name='viewport', content='width=device-width,initial-scale=1,maximum-scale=1')
-      link(rel='shortcut icon', href='/favicon.ico', type='image/x-icon')
-      link(rel='stylesheet', href='http://g.tbcdn.cn/thx/cube/1.2.1/cube.css')
-      link(rel='stylesheet', href='http://g.tbcdn.cn/thx/brix/2.0/gallery/??tables/index-min.css,dropdown/index-min.css,calendar/index-min.css,pagination/index-min.css,dialog/index-min.css,tooltip/index-min.css,form/index-min.css')
-      link(rel='stylesheet', href='#{config.staticCDN}/assets/css/markdown.css')
-      link(rel='stylesheet', href='#{config.staticCDN}/assets/css/style.css')
-      link(rel='stylesheet', href='#{config.staticCDN}/app/components/editor/editor.css')
-      link(rel='stylesheet', href='#{config.staticCDN}/app/components/code_prettify_lib/prettify.css')  
-      script(src='http://g.tbcdn.cn/kissy/k/1.4.2/seed.js')
-      script(src='http://g.tbcdn.cn/thx/brix/2.1.0/brix.js', bx-config='{autoPagelet:true,componentsPath:"#{config.staticCDN}/app/",debug:true}')
-      script(src='http://a.tbcdn.cn/apps/e/magix/1.1/kissy-magix-mxext.js')
-      script(src='#{config.staticCDN}/app/components/code_prettify_lib/prettify.js')
-      script(src='#{config.staticCDN}/app/components/editor/editor.js')
-      script
-        var duoshuoQuery = {short_name:"kiwiobject"};
-      script(src='http://static.duoshuo.com/embed.js')
-    body
-    script(src='#{config.staticCDN}/boot/index.js', bx-config='{debug:true, tbcdn:"#{config.staticCDN}"}')
+block assets
+  link(rel='stylesheet', href='http://g.tbcdn.cn/thx/cube/1.2.1/cube.css')
+  link(rel='stylesheet', href='http://g.tbcdn.cn/thx/brix/2.0/gallery/??tables/index-min.css,dropdown/index-min.css,calendar/index-min.css,pagination/index-min.css,dialog/index-min.css,tooltip/index-min.css,form/index-min.css')
+  link(rel='stylesheet', href='#{config.staticCDN}/assets/css/markdown.css')
+  link(rel='stylesheet', href='#{config.staticCDN}/assets/css/style.css')
+  link(rel='stylesheet', href='#{config.staticCDN}/app/components/editor/editor.css')
+  link(rel='stylesheet', href='#{config.staticCDN}/app/components/code_prettify_lib/prettify.css')  
+  script(src='http://g.tbcdn.cn/kissy/k/1.4.2/seed.js')
+  script(src='http://g.tbcdn.cn/thx/brix/2.1.0/brix.js', bx-config="{autoPagelet:true,componentsPath:'#{config.staticCDN}/app/',debug:true}")
+  script(src='http://a.tbcdn.cn/apps/e/magix/1.1/kissy-magix-mxext.js')
+  script(src='#{config.staticCDN}/app/components/code_prettify_lib/prettify.js')
+  script(src='#{config.staticCDN}/app/components/editor/editor.js')
+  script(type='text/javascript').
+    var duoshuoQuery = {short_name:"kiwiobject"};
+  script(src='http://static.duoshuo.com/embed.js')
+  script(src='#{config.staticCDN}/boot/index.js', boot-config="{debug:true, tbcdn:'#{config.staticCDN}'}")

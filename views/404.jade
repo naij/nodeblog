@@ -1,15 +1,9 @@
-<!DOCTYPE html> 
-<html> 
-    <head>
-        <meta charset="utf-8" />
-        <meta name="description" content="<%= config.description %>">
-        <title><%= config.name %></title>
-        <link rel="stylesheet" href="http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.css">
-        <link rel="stylesheet" href="<%= config.staticCDN %>/assets/css/style.css">
-    </head>
-    <body>
-        <div class="status-404">
-            <img src="/assets/img/404.jpg">
-        </div>
-    </body>
-</html>
+extends layout
+
+block assets
+  link(rel='stylesheet', href='http://g.tbcdn.cn/thx/cube/1.2.1/cube-min.css')
+  link(rel='stylesheet', href='#{config.staticCDN}/assets/css/style-min.css')
+
+block content
+  div.status-404
+    img(src="")

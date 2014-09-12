@@ -1,4 +1,5 @@
 var express = require('express');
+var fs = require('fs')
 var jade = require('jade');
 var path = require('path');
 var config = require('config');
@@ -10,12 +11,15 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var serveStatic = require('serve-static');
 var routes = require('./routes');
+
 var app = express();
+var accessLogStream = fs.createWriteStream(path.join(__dirname, '/log/access.log'), {flags: 'a'})
 
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(favicon(path.join(__dirname, 'public/favicon.ico')));
+app.use(logger('combined', {stream: accessLogStream}));
 app.use(methodOverride());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
