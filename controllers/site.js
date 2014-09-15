@@ -5,6 +5,6 @@ exports.index = function(req, res, next) {
     res.render('index');
 };
 
-exports.index_debug = function(req, res, next) {
-    res.render('index_debug');
+exports.debug = function(req, res, next) {
+    res.render('debug');
 };

@@ -7,7 +7,7 @@ var manage = require('../controllers/manage');
 module.exports = function (app) {
 
     app.get('/', site.index);
-    app.get('/index_debug', site.index_debug);
+    app.get('/debug', site.debug);
 
 
     // 文章列表
