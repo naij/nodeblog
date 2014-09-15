@@ -20,7 +20,8 @@
         "mongoose": "3.8.8",
         "gm": "1.16.0",
         "jade": "1.6.0",
-        "config": "1.1.0"
+        "config": "1.1.0",
+        "dotenv": "0.4.0"
     },
     "devDependencies": {
         "gulp": "3.8.8",

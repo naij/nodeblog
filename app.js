@@ -10,10 +10,14 @@ var methodOverride = require('method-override');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var serveStatic = require('serve-static');
+var dotenv = require('dotenv');
+dotenv._getKeysAndValuesFromEnvFilePath(path.join(process.env.HOME, '.env'));
+dotenv._setEnvs();
+
 var routes = require('./routes');
 
 var app = express();
-var accessLogStream = fs.createWriteStream(path.join(__dirname, '/log/access.log'), {flags: 'a'})
+var accessLogStream = fs.createWriteStream(path.join(__dirname, '/log/access.log'), {flags: 'a'});
 
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
