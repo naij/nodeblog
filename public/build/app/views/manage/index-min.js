@@ -1,0 +1,1 @@
+KISSY.add("app/views/manage/index",function(e,n,a,i,t,r){r.all;return n.extend({locationChange:function(){this.render()},render:function(){var e=this;e.setViewPagelet()}})},{requires:["mxext/view","app/models/modelmanager","magix/vom","magix/router","node","app/util/util"]});

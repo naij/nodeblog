@@ -1,0 +1,1 @@
+KISSY.add("app/views/pages/about/about",function(e,a,t,i,n,o){o.all;return a.extend({locationChange:function(){this.render()},render:function(){var e=this;e.setViewPagelet()}})},{requires:["mxext/view","app/models/modelmanager","magix/vom","magix/router","node","app/util/util"]});

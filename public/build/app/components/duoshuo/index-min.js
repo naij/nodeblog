@@ -1,0 +1,1 @@
+KISSY.add("components/duoshuo/index",function(t,e){var d=(t.all,e.extend({bindUI:function(){var t=this.get("el"),e=this.get("aid"),d="http://"+location.host,r=document.createElement("div");r.setAttribute("data-thread-key",e),r.setAttribute("data-url",d),DUOSHUO.EmbedThread(r),t.append(r)}}));return d},{requires:["brix/core/brick"]});

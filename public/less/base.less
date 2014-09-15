@@ -7,6 +7,8 @@
 
 @red: red;
 
+@blue: #00A8FF;
+
 @layout-width: 1000px;
 
 /**
@@ -87,15 +89,15 @@
  * iconfont
  **/
 @font-face {
-    font-family: "iconfont-pub";
+    font-family: "iconfont-kiwi";
     font-weight: normal;
     font-style: normal;
     src: url("http://at.alicdn.com/t/font_1409824422_3499794.eot");
     src: url("http://at.alicdn.com/t/font_1409824422_3499794.eot?#iefix") format("embedded-opentype"), url("http://at.alicdn.com/t/font_1409824422_3499794.woff") format("woff"), url("http://at.alicdn.com/t/font_1409824422_3499794.ttf") format("truetype"), url("http://at.alicdn.com/t/font_1409824422_3499794.svg#iconfont") format("svg");
 }
 
-.iconfont-pub{
-    font-family: "iconfont-pub";
+.iconfont-kiwi{
+    font-family: "iconfont-kiwi";
     font-size: 16px;
     font-style: normal;
     font-weight: normal;
@@ -120,11 +122,12 @@ body {
  * 链接定义
  **/
 a {
-    color: #333;
+    color: #454545;
     text-decoration: none;
 }
 a:hover {
-    color: @orange;
+    color: @blue;
+    .transition(color .15s linear);
 }
 
 /**
@@ -132,6 +135,9 @@ a:hover {
  **/
 .color-orange {
     color: @orange;
+}
+.color-blue {
+    color: @blue;
 }
 
 /**
