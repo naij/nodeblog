@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
 var serveStatic = require('serve-static');
 var dotenv = require('dotenv');
 dotenv._getKeysAndValuesFromEnvFilePath(path.join(process.env.HOME, '.env'));
@@ -30,6 +31,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(serveStatic(path.join(__dirname, 'public')));
 app.use(cookieParser());
 app.use(session({
+    store: new RedisStore({
+        
+    }),
     secret: config.session_secret
 }));
 app.use(function (req, res, next) {
