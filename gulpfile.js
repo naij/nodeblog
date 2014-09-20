@@ -16,12 +16,12 @@ gulp.task('watch_less', function() {
     gulp.watch(['./public/less/*.less'], ['less']);
 });
 
-gulp.task('clean', function(cb) {
+gulp.task('clean', function() {
     return gulp.src('./public/build', {read: false})
         .pipe(clean());
 });
 
-gulp.task('compress', function() {
+gulp.task('compress', ['clean', 'less'], function() {
     gulp.src('./public/app/**/*.js')
         .pipe(rename(function (path) {
             path.basename += "-min";
@@ -44,6 +44,6 @@ gulp.task('watch', [
     'watch_less'
 ]);
 
-gulp.task('build', ['less', 'clean'], function() {
-    gulp.run('compress');
-});
+gulp.task('build', [
+    'compress'
+]);
