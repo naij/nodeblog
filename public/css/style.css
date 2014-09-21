@@ -705,3 +705,16 @@ body {
 .manage-guide li a:hover {
   background-color: #f6f6f6;
 }
+@media screen and (max-width: 760px) {
+  .manage-guide li {
+    width: 45%;
+    margin-right: 10%;
+    margin-bottom: 15px;
+  }
+  .manage-guide li a {
+    width: 100%;
+  }
+  .manage-guide li:last-child {
+    margin-right: 0;
+  }
+}

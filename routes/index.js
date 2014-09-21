@@ -6,6 +6,7 @@ var manage = require('../controllers/manage');
 
 module.exports = function (app) {
 
+    // 首页
     app.get('/', site.index);
     app.get('/debug', site.debug);
 
