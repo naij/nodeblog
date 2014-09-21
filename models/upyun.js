@@ -1,6 +1,6 @@
 var config = require('config');
 var upyun = require('upyun');
-var backname = config.upyun_buckname;
+var backname = config.upyunBuckname;
 var username = process.env.UPYUN_USERNAME;
 var password = process.env.UPYUN_PASSWORD;
 

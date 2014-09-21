@@ -32,9 +32,10 @@ app.use(serveStatic(path.join(__dirname, 'public')));
 app.use(cookieParser());
 app.use(session({
     store: new RedisStore({
-        
+        redisHost: config.redisHost,
+        redisPort: config.redisPort
     }),
-    secret: config.session_secret
+    secret: config.sessionSecret
 }));
 app.use(function (req, res, next) {
     res.locals.config = config;

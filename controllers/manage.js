@@ -1,4 +1,4 @@
-var sanitize = require('validator').sanitize;
+var sanitize = require('validator');
 var crypto = require('crypto');
 var config = require('config');
 var models = require('../models');
@@ -31,8 +31,8 @@ exports.loginMsg = function (req, res) {
 
 // login.
 exports.login = function (req, res, next) {
-    var loginname = sanitize(req.body.name).trim().toLowerCase();
-    var pass = sanitize(req.body.pass).trim();
+    var loginname = sanitize.trim(req.body.name).toLowerCase();
+    var pass = sanitize.trim(req.body.pass);
 
     if (!loginname || !pass) {
         res.json({
@@ -88,7 +88,7 @@ exports.login = function (req, res, next) {
 // sign out
 exports.logout = function (req, res, next) {
     req.session.destroy();
-    res.clearCookie(config.cookie_name, {
+    res.clearCookie(config.cookieName, {
         path: '/'
     });
     res.json({
@@ -104,7 +104,8 @@ exports.userAuth = function (req, res, next) {
     if (req.session.hasLogin) {
         return next();
     } else {
-        var cookie = req.cookies[config.cookie_name];
+        var cookie = req.cookies[config.cookieName];
+
         if (!cookie) {
             res.json({
                 data: {
@@ -119,11 +120,11 @@ exports.userAuth = function (req, res, next) {
             return; 
         }
 
-        var auth_token = decrypt(cookie, config.session_secret);
-        var auth = auth_token.split('\t');
-        var user_id = auth[0];
+        var authToken = decrypt(cookie, config.sessionSecret);
+        var auth = authToken.split('\t');
+        var userId = auth[0];
 
-        User.findOne({_id: user_id}, function (err, user) {
+        User.findOne({_id: userId}, function (err, user) {
             if (err) {
                 res.json({
                     data: {
@@ -159,8 +160,8 @@ exports.userAuth = function (req, res, next) {
 };
 
 function genSession(user, res) {
-    var auth_token = encrypt(user._id + '\t' + user.name + '\t' + user.pass, config.session_secret);
-    res.cookie(config.cookie_name, auth_token, {
+    var authToken = encrypt(user._id + '\t' + user.name + '\t' + user.pass, config.sessionSecret);
+    res.cookie(config.cookieName, authToken, {
         path: '/',
         maxAge: 1000 * 60 * 60 * 24 * 30
     }); //cookie 有效期30天

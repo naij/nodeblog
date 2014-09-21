@@ -1,4 +1,4 @@
-body{
+body {
     background-color: #eee;
 }
 
@@ -60,22 +60,22 @@ body{
         padding: 8px 10px;
     }
     .table {
-        th:first-child{
+        th:first-child {
             padding-left: 10px;
         }
-        th:last-child{
+        th:last-child {
             padding-right: 10px;
         }
-        td:first-child{
+        td:first-child {
             padding-left: 10px;
         }
-        td:last-child{
+        td:last-child {
             padding-right: 10px;
         }
-        td.table-child-td:first-child{
+        td.table-child-td:first-child {
             padding-left: 40px;
         }
-        td.table-child-td:last-child{
+        td.table-child-td:last-child {
             padding-right: 40px;
         }
     }
@@ -83,24 +83,24 @@ body{
 
 /* 基本表单*/
 .union-form {
-    .field-select{
+    .field-select {
         border:1px solid #909090;
         height:24px;/* fixed chrome\IE8\IE9 高度bug */
         margin:0;
         padding:2px;
         vertical-align:middle;
     }
-    .textarea{
+    .textarea {
         height:80px;
         width:400px;
         padding:4px;
         overflow:auto;
     }
     .input,
-    .dropdown{
+    .dropdown {
         margin-top: -3px;
     }
-    .field-label{
+    .field-label {
         height: 25px;
         width: 60px;
         text-align: right;
@@ -108,23 +108,23 @@ body{
         top: 0;
         left: 0;
     }
-    .field-label2{
+    .field-label2 {
         margin-bottom: 5px;
     }
-    .field{
+    .field {
         color: #505050;
         margin-bottom: 30px;
         position: relative;
         padding-left: 65px;
         zoom: 1;
     }
-    .field:after{
+    .field:after {
         content: '\20';
         display: block;
         height: 0;
         clear: both;
     }
-    .field-extra{
+    .field-extra {
         padding-left: 0;
     }
     .ux-valid {
@@ -186,47 +186,35 @@ body{
     line-height: 24px;
     padding: 0 15px;
 }
-.blank {
-    padding-right: 1em;
-}
 
 .header {
     background-color: #2980b9;
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 300px;
 
-    .header-bd {
-        height: 80px;
-        width: 1000px;
-        margin: 0 auto;
-        position: relative;
+    .title {
+        height: 90px;
+        line-height: 90px;
+        font-size: 36px;
+        text-align: center;
     
-        .title {
-            font-size: 36px;
-            /*font-weight: bold;*/
-            position: absolute;
-            top: 6px;
-            left: 0;
-        }
         a {
             color: #fff;
         }
     }
-    .site-nav{
-        width: 1000px;
-        margin: 0 auto;
-    }
     .site-nav li{
-        float: left;
         border-top: 1px solid #328cc7;
-        width: 33.33%;
+        border-bottom: 1px solid #328cc7;
+        margin-top: -1px;
     }
     .site-nav a{
         color: #fff;
-        float: left;
-        height: 40px;
-        line-height: 40px;
+        display: block;
+        height: 60px;
+        line-height: 60px;
         font-size: 14px;
-        text-align: center;
-        width: 100%;
         text-align: center;
 
         &:hover {
@@ -239,58 +227,26 @@ body{
         color: #fff;
     }
 }
-
 .content {
     background: #fff;
     color: #454545;
-    width: 940px;
     padding: 20px 30px;
-    margin: 20px auto;
+    margin-left: 300px;
     min-height: 600px;
 }
-
-.wrap-hd{
-    border-bottom: 1px solid #eee;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-}
-.wrap-hd .title-bar{
-    float:left;
-}
-.wrap-hd .title{
-    color:#333;
-    display:inline-block;
-    *display:inline;
-    font-size:18px;
-    margin-right:20px;
-    font-weight:normal;
-}
-
-.status-404 {
-    width: 400px;
-    text-align: center;
-    margin: 0 auto;
-    min-height: 700px;
-}
-.status-404 img{
-    margin: 100px auto;
-    border-radius: 3px;
-}
-
 .footer {
     background-color: #fff;
+    margin-left: 300px;
     padding: 40px 0;
+    text-align: center;
 
-    .copyright{
-        width: 1000px;
-        margin: 0 auto;
-    }
     .footer-logo a{
         color: #ccc;
-        font-size: 24px;
+        font-size: 16px;
     }
     .footer-license{
         color: #ddd;
+        font-size: 12px;
 
         a {
             color: #ddd;
@@ -298,27 +254,69 @@ body{
     }
 }
 
+.wrap-hd{
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+
+    .title-bar{
+        float:left;
+    }
+    .title{
+        color:#333;
+        display:inline-block;
+        *display:inline;
+        font-size:18px;
+        margin-right:20px;
+        font-weight:normal;
+    }
+}
+
+.status-404 {
+    width: 400px;
+    text-align: center;
+    margin: 0 auto;
+    min-height: 700px;
+
+    img{
+        margin: 100px auto;
+        border-radius: 3px;
+    }
+}
+
+
+/* 自适应样式 */
 @media screen and (max-width: 760px) {
     .header {
+        position: static;
         width: auto;
 
-        .header-bd {
-            width: auto;
-            margin: 0 10px;
+        title {
+            position: relative;
+
+            a {
+                position: absolute;
+                top: 6px;
+                left: 0;
+            }
         }
         .site-nav {
             width: auto;
+
+            li {
+                float: left;
+                width: 33.33333333%;
+            }
         }
     }
     .content {
-        width: auto;
-        margin-top: 0px;
+        margin-left: 0px;
+        padding: 10px;
     }
     .footer {
-        width: auto;
+        margin-left: 0;
 
         .copyright {
-            width: auto;
             margin: 0 10px;
         }
     }

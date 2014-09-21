@@ -5,11 +5,12 @@
     // 静态资源
     "staticCDN": "/build",
 
-    "db": "mongodb://127.0.0.1:27017/kiwiobject",
-    "session_secret": "kiwi_blog",
-    "cookie_name": "kiwi_blog",
+    "mongodb": "mongodb://127.0.0.1:27017/kiwiobject",
+    "redisHost": "127.0.0.1",
+    "redisPort": "6379",
+    "sessionSecret": "kiwi_blog",
+    "cookieName": "kiwi_blog",
 
     // 又拍云账户
-    "upyun_buckname" : "kiwipics",
-    "upyun_path" : "http://kiwipics.b0.upaiyun.com"
+    "upyunBuckname" : "kiwipics"
 }
