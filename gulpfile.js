@@ -5,6 +5,7 @@ var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
 var minifyCSS = require('gulp-csso');
 var clean = require('gulp-clean');
+var combine = require('./tasks/combine');
 
 gulp.task('less', function() {
     return gulp.src('./public/less/style.less')
