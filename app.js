@@ -1,4 +1,5 @@
 // 设置系统变量
+var path = require('path');
 var dotenv = require('dotenv');
 dotenv._getKeysAndValuesFromEnvFilePath(path.join(process.env.HOME, '.env'));
 dotenv._setEnvs();
@@ -6,7 +7,6 @@ dotenv._setEnvs();
 var express = require('express');
 var fs = require('fs');
 var jade = require('jade');
-var path = require('path');
 var logger = require('morgan');
 var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
