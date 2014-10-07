@@ -1,1 +1,1 @@
-KISSY.add("app/views/404",function(e,t){return t.extend({render:function(){this.setViewHTML(this.template)}})},{requires:["mxext/view"]});
+KISSY.add("app/views/404",function(e,t){return function(e){return e.prototype.template='<div class=status-404> <img src="/assets/img/404.jpg"> </div>',e}(t.extend({render:function(){this.setViewHTML(this.template)}}))},{requires:["mxext/view"]});

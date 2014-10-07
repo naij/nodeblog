@@ -23,7 +23,26 @@ gulp.task('clean', function() {
 });
 
 gulp.task('compress', ['clean', 'less'], function() {
-    gulp.src('./public/app/**/*.js')
+    gulp.src('./public/app/views/**/*.js')
+        .pipe(combine)
+        .pipe(rename(function (path) {
+            path.basename += "-min";
+        }))
+        .pipe(uglify({
+            output:{ascii_only:true}
+        }))
+        .pipe(gulp.dest('./public/build/app/views'))
+
+    gulp.src('./public/boot/*.js')
+        .pipe(rename(function (path) {
+            path.basename += "-min";
+        }))
+        .pipe(uglify({
+            output:{ascii_only:true}
+        }))
+        .pipe(gulp.dest('./public/build/boot/'))
+
+    gulp.src(['./public/app/**/*.js', '!./public/app/views/**/*.js'])
         .pipe(rename(function (path) {
             path.basename += "-min";
         }))

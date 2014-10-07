@@ -1,8 +1,12 @@
+// 设置系统变量
+var dotenv = require('dotenv');
+dotenv._getKeysAndValuesFromEnvFilePath(path.join(process.env.HOME, '.env'));
+dotenv._setEnvs();
+
 var express = require('express');
 var fs = require('fs');
 var jade = require('jade');
 var path = require('path');
-var config = require('config');
 var logger = require('morgan');
 var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
@@ -11,12 +15,8 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 var serveStatic = require('serve-static');
-var dotenv = require('dotenv');
-dotenv._getKeysAndValuesFromEnvFilePath(path.join(process.env.HOME, '.env'));
-dotenv._setEnvs();
-
+var config = require('config');
 var routes = require('./routes');
-
 var app = express();
 var accessLogStream = fs.createWriteStream(path.join(__dirname, '/log/access.log'), {flags: 'a'});
 

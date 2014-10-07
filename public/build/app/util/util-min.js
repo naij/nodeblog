@@ -1,1 +1,1 @@
-KISSY.add("app/util/util",function(i,a,l,t,o,r){var m={};return i.mix(m,a),i.mix(m,l),i.mix(m,t),i.mix(m,o),i.mix(m,r),m},{requires:["./format/format","./dialog/dialog","./tooltip/tooltip","./globaltip/globaltip","./calendar/calendar"]});
+KISSY.add("app/util/util",function(i,a,t,o,r){var l={};return i.mix(l,a),i.mix(l,t),i.mix(l,o),i.mix(l,r),l},{requires:["./format/format","./dialog/dialog","./tooltip/tooltip","./calendar/calendar"]});
