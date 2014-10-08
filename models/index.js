@@ -1,14 +1,14 @@
 var mongoose = require('mongoose');
-var config = require('config');
-var mongodb = config.mongodb;
+var username = process.env.MONGO_USERNAME;
+var password = process.env.MONGO_PASSWORD;
+var mongodb = 'mongodb://' + username + ':' + password + '@' + '127.0.0.1:27017/kiwiobject';
 
 mongoose.connect(mongodb, function (err) {
     if (err) {
-        console.error('connect to %s error: ', mongodb, err.message);
+        console.error('connect to mongodb error: ', err.message);
         process.exit(1);
-    }
-    else{
-        console.log('connect to "%s" success', mongodb);
+    } else {
+        console.log('connect to mongodb success');
     }
 });
 

@@ -5,7 +5,6 @@
     // 静态资源
     "staticCDN": "",
 
-    "mongodb": "mongodb://127.0.0.1:27017/kiwiobject",
     "redisHost": "127.0.0.1",
     "redisPort": "6379",
     "sessionSecret": "kiwi_blog",
