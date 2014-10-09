@@ -44,7 +44,7 @@ usage() {
 cat << EOF
 usage: $0 options
 
-This script dumps the current mongo database, tars it, then sends it to an Amazon S3 bucket.
+This script dumps the current mongo database, tars it, then sends it to an upyun bucket.
 
 OPTIONS:
    -h      Show this message
@@ -57,7 +57,7 @@ OPTIONS:
 EOF
 }
 
-MONGODB_USER=
+MONGODB_USERNAME=
 MONGODB_PASSWORD=
 AWS_ACCESS_KEY=
 AWS_SECRET_KEY=
@@ -66,59 +66,57 @@ S3_BUCKET=
 
 while getopts “ht:u:p:k:s:r:b:” OPTION
 do
-  case $OPTION in
-    h)
-      usage
-      exit 1
-      ;;
-    u)
-      MONGODB_USER=$OPTARG
-      ;;
-    p)
-      MONGODB_PASSWORD=$OPTARG
-      ;;
-    k)
-      AWS_ACCESS_KEY=$OPTARG
-      ;;
-    s)
-      AWS_SECRET_KEY=$OPTARG
-      ;;
-    r)
-      S3_REGION=$OPTARG
-      ;;
-    b)
-      S3_BUCKET=$OPTARG
-      ;;
-    ?)
-      usage
-      exit
-    ;;
-  esac
+    case $OPTION in
+        h)
+            usage
+            exit 1
+            ;;
+        u)
+            MONGODB_USERNAME=$OPTARG
+            ;;
+        p)
+            MONGODB_PASSWORD=$OPTARG
+            ;;
+        k)
+            AWS_ACCESS_KEY=$OPTARG
+            ;;
+        s)
+            AWS_SECRET_KEY=$OPTARG
+            ;;
+        r)
+            S3_REGION=$OPTARG
+            ;;
+        b)
+            S3_BUCKET=$OPTARG
+            ;;
+        ?)
+            usage
+            exit
+        ;;
+    esac
 done
 
-if [[ -z $MONGODB_USER ]] || [[ -z $MONGODB_PASSWORD ]]
-then
-  usage
-  exit 1
+if [ -z $MONGODB_USERNAME ] || [ -z $MONGODB_PASSWORD ]; then
+    usage
+    exit 1
 fi
 
 # Get the directory the script is being run from
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-echo $DIR
+DIR=`pwd`
 # Store the current date in YYYY-mm-DD-HHMMSS
-DATE=$(date -u "+%F-%H%M%S")
+DATE=`date -u "+%F-%H%M%S"`
 FILE_NAME="backup-$DATE"
 ARCHIVE_NAME="$FILE_NAME.tar.gz"
 
 # Lock the database
 # Note there is a bug in mongo 2.2.0 where you must touch all the databases before you run mongodump
-mongo -username "$MONGODB_USER" -password "$MONGODB_PASSWORD" admin --eval "var databaseNames = db.getMongo().getDBNames(); for (var i in databaseNames) { printjson(db.getSiblingDB(databaseNames[i]).getCollectionNames()) }; printjson(db.fsyncLock());"
+mongo -username "$MONGODB_USERNAME" -password "$MONGODB_PASSWORD" admin --eval "var databaseNames = db.getMongo().getDBNames(); for (var i in databaseNames) { printjson(db.getSiblingDB(databaseNames[i]).getCollectionNames()) }; printjson(db.fsyncLock());"
 
 # Dump the database
-mongodump -username "$MONGODB_USER" -password "$MONGODB_PASSWORD" --out $DIR/backup/$FILE_NAME
+mongodump -username "$MONGODB_USERNAME" -password "$MONGODB_PASSWORD" --out $DIR/backup/$FILE_NAME
 
 # Unlock the database
-mongo -username "$MONGODB_USER" -password "$MONGODB_PASSWORD" admin --eval "printjson(db.fsyncUnlock());"
+mongo -username "$MONGODB_USERNAME" -password "$MONGODB_PASSWORD" admin --eval "printjson(db.fsyncUnlock());"
 
 # Tar Gzip the file
 tar -C $DIR/backup/ -zcvf $DIR/backup/$ARCHIVE_NAME $FILE_NAME/
@@ -126,7 +124,7 @@ tar -C $DIR/backup/ -zcvf $DIR/backup/$ARCHIVE_NAME $FILE_NAME/
 # Remove the backup directory
 rm -r $DIR/backup/$FILE_NAME
 
-# Send the file to the backup drive or S3
+# Send the file to the backup drive or upyun
 
 # HEADER_DATE=$(date -u "+%a, %d %b %Y %T %z")
 # CONTENT_MD5=$(openssl dgst -md5 -binary $DIR/backup/$ARCHIVE_NAME | openssl enc -base64)
