@@ -1,6 +1,0 @@
-#mongo backup
-
-SHELL=/bin/sh
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-
-0 0 * * * root /home/wangjian/discovery/nodeblog/backup/backup.sh -u wangjian -p wang1234 >>/home/wangjian/discovery/nodeblog/backup/log.txt 2>&1

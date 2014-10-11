@@ -1,5 +1,10 @@
 #!/bin/bash
 
+MONGODB_USERNAME
+MONGODB_PASSWORD
+UPYUN_USERNAME
+UPYUN_PASSWORD
+
 usage() {
 cat << EOF
 
@@ -11,21 +16,12 @@ OPTIONS:
    -h      Show this message
    -u      Mongodb username
    -p      Mongodb password
-   -k      AWS Access Key
-   -s      AWS Secret Key
-   -r      Amazon S3 region
-   -b      Amazon S3 bucket name
+   -y      upyun username
+   -z      upyun password
 EOF
 }
 
-MONGODB_USERNAME=
-MONGODB_PASSWORD=
-AWS_ACCESS_KEY=
-AWS_SECRET_KEY=
-S3_REGION=
-S3_BUCKET=
-
-while getopts “ht:u:p:k:s:r:b:” OPTION
+while getopts “h:u:p:y:z:” OPTION
 do
     case $OPTION in
         h)
@@ -38,17 +34,11 @@ do
         p)
             MONGODB_PASSWORD=$OPTARG
             ;;
-        k)
-            AWS_ACCESS_KEY=$OPTARG
+        y)
+            UPYUN_USERNAME=$OPTARG
             ;;
-        s)
-            AWS_SECRET_KEY=$OPTARG
-            ;;
-        r)
-            S3_REGION=$OPTARG
-            ;;
-        b)
-            S3_BUCKET=$OPTARG
+        z)
+            UPYUN_PASSWORD=$OPTARG
             ;;
         ?)
             usage
@@ -57,47 +47,40 @@ do
     esac
 done
 
-if [ -z $MONGODB_USERNAME ] || [ -z $MONGODB_PASSWORD ]; then
+if [ -z $MONGODB_USERNAME ] || [ -z $MONGODB_PASSWORD ] || [ -z $UPYUN_USERNAME ] || [ -z $UPYUN_PASSWORD ]; then
     usage
     exit 1
 fi
 
 # Get the directory the script is being run from
-DIR=$(dirname $0)
+SCRIPT_DIR=$(dirname $0)
 # Store the current date in YYYY-mm-DD-HHMMSS
 DATE=$(date -u "+%F-%H%M%S")
 FILE_NAME="backup-$DATE"
 ARCHIVE_NAME="$FILE_NAME.tar.gz"
+BACKUP_DIR="$SCRIPT_DIR/backup/"
+UPYUN_HOST="v0.ftp.upyun.com"
+REMOTE_DIR="/b"
 
 # Lock the database
 # Note there is a bug in mongo 2.2.0 where you must touch all the databases before you run mongodump
 mongo -username "$MONGODB_USERNAME" -password "$MONGODB_PASSWORD" admin --eval "var databaseNames = db.getMongo().getDBNames(); for (var i in databaseNames) { printjson(db.getSiblingDB(databaseNames[i]).getCollectionNames()) }; printjson(db.fsyncLock());"
 
 # Dump the database
-mongodump -username "$MONGODB_USERNAME" -password "$MONGODB_PASSWORD" --out $DIR/backup/$FILE_NAME
+mongodump -username "$MONGODB_USERNAME" -password "$MONGODB_PASSWORD" --out $BACKUP_DIR/$FILE_NAME
 
 # Unlock the database
 mongo -username "$MONGODB_USERNAME" -password "$MONGODB_PASSWORD" admin --eval "printjson(db.fsyncUnlock());"
 
 # Tar Gzip the file
-tar -C $DIR/backup/ -zcvf $DIR/backup/$ARCHIVE_NAME $FILE_NAME/
+tar -C $BACKUP_DIR/ -zcvf $BACKUP_DIR/$ARCHIVE_NAME $FILE_NAME/
 
 # Remove the backup directory
-rm -r $DIR/backup/$FILE_NAME
+rm -r $BACKUP_DIR/$FILE_NAME
 
-# Send the file to the backup drive or upyun
-
-# HEADER_DATE=$(date -u "+%a, %d %b %Y %T %z")
-# CONTENT_MD5=$(openssl dgst -md5 -binary $DIR/backup/$ARCHIVE_NAME | openssl enc -base64)
-# CONTENT_TYPE="application/x-download"
-# STRING_TO_SIGN="PUT\n$CONTENT_MD5\n$CONTENT_TYPE\n$HEADER_DATE\n/$S3_BUCKET/$ARCHIVE_NAME"
-# SIGNATURE=$(echo -e -n $STRING_TO_SIGN | openssl dgst -sha1 -binary -hmac $AWS_SECRET_KEY | openssl enc -base64)
-
-# curl -X PUT \
-# --header "Host: $S3_BUCKET.s3-$S3_REGION.amazonaws.com" \
-# --header "Date: $HEADER_DATE" \
-# --header "content-type: $CONTENT_TYPE" \
-# --header "Content-MD5: $CONTENT_MD5" \
-# --header "Authorization: AWS $AWS_ACCESS_KEY:$SIGNATURE" \
-# --upload-file $DIR/backup/$ARCHIVE_NAME \
-# https://$S3_BUCKET.s3-$S3_REGION.amazonaws.com/$ARCHIVE_NAME
+# Send the file to the upyun
+lftp -c "open ftp://$UPYUN_HOST;
+user $UPYUN_USERNAME $UPYUN_PASSWORD;
+lcd $BACKUP_DIR;
+cd $REMOTE_DIR;
+mirror --reverse --dereference --verbose"
