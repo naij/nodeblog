@@ -63,9 +63,9 @@ if [ -z $MONGODB_USERNAME ] || [ -z $MONGODB_PASSWORD ]; then
 fi
 
 # Get the directory the script is being run from
-DIR=`pwd`
+DIR=$(dirname $0)
 # Store the current date in YYYY-mm-DD-HHMMSS
-DATE=`date -u "+%F-%H%M%S"`
+DATE=$(date -u "+%F-%H%M%S")
 FILE_NAME="backup-$DATE"
 ARCHIVE_NAME="$FILE_NAME.tar.gz"
 

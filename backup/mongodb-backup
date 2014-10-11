@@ -1,0 +1,6 @@
+#mongo 定时备份
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+* * * * * root /home/wangjian/discovery/nodeblog/backup/backup.sh -u wangjian -p wang1234 >>/home/wangjian/discovery/nodeblog/backup/log.txt 2>&1
