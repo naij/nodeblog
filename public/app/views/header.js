@@ -10,7 +10,7 @@ KISSY.add("app/views/header", function (S, View, Node, MM) {
             var loc = me.location;
             var path = loc.pathname;
             var pathMap = {
-                '/pages/kiwiobject/article_detail': '/pages/kiwiobject/article_list',
+                '/pages/f2e/article_detail': '/pages/f2e/article_list',
                 '/pages/discovery/article_detail': '/pages/discovery/article_list',
                 '/pages/life/article_detail': '/pages/life/article_list'
             }

@@ -1,4 +1,4 @@
-KISSY.add("app/views/pages/kiwiobject/article_detail", function (S, View, MM, VOM, Router, Node, Util) {
+KISSY.add("app/views/pages/f2e/article_list", function (S, View, MM, VOM, Router, Node, Util) {
     var $ = Node.all;
 
     return View.extend({
@@ -7,21 +7,22 @@ KISSY.add("app/views/pages/kiwiobject/article_detail", function (S, View, MM, VO
         },
         render: function () {
             var me = this;
-            var loc = me.location;
-            var params = loc.params;
-            var id = params.id;
 
             me.manage(MM.fetchAll([{
-                name: "article_detail",
+                name: "article_list",
                 urlParams: {
-                	id: id
+                	type: 'f2e'
                 }
             }], function (errs, MesModel) {
                 var data = MesModel.get('data');
 
+                for (var i = 0; i < data.length; i++) {
+                    data[i].content = data[i].content.replace(/<[^>]+>/g, '');
+                    data[i].content = data[i].content.substring(0, 300) + ' ... ...'
+                }
+
                 me.setViewPagelet({
-                    list: data,
-                    aid: id
+                    list: data
                 });
             }));
         }

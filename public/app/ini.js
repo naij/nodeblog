@@ -7,8 +7,8 @@ KISSY.add("app/ini", function (S) {
     var T = {
         routes: {
             'app/views/default': [
-                '/pages/kiwiobject/article_list',
-                '/pages/kiwiobject/article_detail',
+                '/pages/f2e/article_list',
+                '/pages/f2e/article_detail',
                 '/pages/discovery/article_list',
                 '/pages/discovery/article_detail',
                 '/pages/life/article_list',
@@ -29,7 +29,7 @@ KISSY.add("app/ini", function (S) {
         //默认加载的view
         defaultView: 'app/views/default',
         //默认的pathname
-        defaultPathname: '/pages/kiwiobject/article_list',
+        defaultPathname: '/pages/f2e/article_list',
         //404时显示的view，如果未启用，则404时显示defaultView
         notFoundView: 'app/views/404',
         routes: function (pathname) {

@@ -9,11 +9,11 @@ KISSY.add("app/views/manage/article/list", function (S, View, MM, VOM, Router, N
             var me = this;
             var loc = me.location;
             var params = loc.params;
-            var typeId = params.typeId || 'kiwiobject';
+            var typeId = params.typeId || 'f2e';
             var typeList = [
                 {
-                    typeId: 'kiwiobject',
-                    typeName: 'kiwiobject'
+                    typeId: 'f2e',
+                    typeName: 'f2e'
                 },
                 {
                     typeId: 'discovery',
