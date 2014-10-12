@@ -70,7 +70,7 @@ exports.add = function (req, res, next) {
     proxy.assign('file_upload', 'data_update', render);
 
     // 上传到又拍云
-    upyun.writeFile('/c/' + picName, picContent, true, function (err, data) {
+    upyun.uploadFile('/c/' + picName, picContent, function (err, data) {
         if (!err) {
             fs.unlink(tempPath, function () {
                 if (err) {

@@ -9,6 +9,7 @@ var jade = require('jade');
 var logger = require('morgan');
 var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
+var multer  = require('multer');
 var methodOverride = require('method-override');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
@@ -27,6 +28,7 @@ app.use(logger('combined', {stream: accessLogStream}));
 app.use(methodOverride());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(multer({ dest: './uploads/'}));
 app.use(serveStatic(path.join(__dirname, 'public')));
 app.use(cookieParser());
 app.use(session({

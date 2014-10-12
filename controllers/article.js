@@ -1,5 +1,5 @@
 var EventProxy = require('eventproxy').EventProxy;
-var sanitize = require('validator').sanitize;
+var sanitize = require('validator');
 var markdown = require('markdown-js');
 var models = require('../models');
 var util = require('../libs/util');
@@ -131,8 +131,8 @@ exports.getArticleByTag = function(req, res, next) {
  * @param  {Function} next [description]
  */
 exports.edit = function(req, res, next) {
-    var id = sanitize(req.body.id).trim();
-    var title = sanitize(req.body.title).trim();
+    var id = sanitize.trim(req.body.id);
+    var title = sanitize.trim(req.body.title);
     var markdownContent = req.body.content;
     var htmlContent = markdown.makeHtml(markdownContent);
 
@@ -187,7 +187,7 @@ exports.add = function(req, res, next) {
 
     var type = req.body.type;
     var tag = req.body.tag;
-    var title = sanitize(req.body.title).trim();
+    var title = sanitize.trim(req.body.title);
     var markdownContent = req.body.content;
     var htmlContent = markdown.makeHtml(markdownContent);
 
