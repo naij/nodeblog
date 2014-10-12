@@ -11,5 +11,6 @@
     "cookieName": "kiwi_blog",
 
     // 又拍云账户
-    "upyunBuckname" : "kiwipics"
+    "upyunBuckname" : "kiwipics",
+    "upyunPath": "http://kiwipics.b0.upaiyun.com"
 }

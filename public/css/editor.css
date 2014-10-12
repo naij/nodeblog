@@ -1,10 +1,6 @@
 @font-face {
     font-family: 'icomoon';
-    src:url('fonts/icomoon.eot');
-    src:url('fonts/icomoon.eot?#iefix') format('embedded-opentype'),
-        url('fonts/icomoon.woff') format('woff'),
-        url('fonts/icomoon.ttf') format('truetype'),
-        url('fonts/icomoon.svg#icomoon') format('svg');
+    src:url('../fonts/icomoon.woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -27,7 +23,23 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-bold, .icon-italic, .icon-quote, .icon-unordered-list, .icon-ordered-list, .icon-link, .icon-image, .icon-play, .icon-music, .icon-contract, .icon-fullscreen, .icon-question, .icon-info, .icon-undo, .icon-redo, .icon-code, .icon-preview {
+.icon-bold:before, 
+.icon-italic:before, 
+.icon-quote:before, 
+.icon-unordered-list:before, 
+.icon-ordered-list:before, 
+.icon-link:before, 
+.icon-image:before, 
+.icon-play:before, 
+.icon-music:before, 
+.icon-contract:before, 
+.icon-fullscreen:before, 
+.icon-question:before, 
+.icon-info:before, 
+.icon-undo:before, 
+.icon-redo:before, 
+.icon-code:before, 
+.icon-preview:before {
     font-family: 'icomoon';
     speak: none;
     font-style: normal;

@@ -5,9 +5,9 @@
 </div>
 <div class="table-container">
     <div class="toolbar clearfix">
-        <a href="#" class="btn btn-size25" mx-click="add">上传图片</a>
+        <a href="#" class="btn btn-xsmall" mx-click="add">上传图片</a>
         <div class="table-settings">
-            <a class="btn btn-size25" id="J_calendar" href="#" bx-tmpl="calendar" bx-datakey="startTime,endTime"> {{startTime}} 至  {{endTime}} </a>
+            <a class="btn btn-xsmall" id="J_calendar" href="#" bx-tmpl="calendar" bx-datakey="startTime,endTime"> {{startTime}} 至  {{endTime}} </a>
         </div>
     </div>
     <table class="table pic-list" bx-name="tables" bx-tmpl="list" bx-datakey="list,pathPrefix">
@@ -24,11 +24,11 @@
             <tr>
                 <td class="left">
                     <div class="pic-cnt">
-                        <a href="{{pathPrefix}}{{picPath}}" target="_blank"><img src="{{pathPrefix}}{{picPath}}!120" /></a>
+                        <a href="{{picPath}}" target="_blank"><img src="{{picPath}}!120" /></a>
                     </div>
                 </td>
                 <td class="left">
-                    <textarea class="textarea" onclick="select()">{{pathPrefix}}{{picPath}}</textarea>
+                    <textarea class="textarea" onclick="select()">{{picPath}}</textarea>
                 </td>
                 <td class="left">{{picSize}}</td>
                 <td class="left">{{uploadTime}}</td>

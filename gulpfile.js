@@ -57,6 +57,9 @@ gulp.task('compress', ['clean', 'less'], function() {
         }))
         .pipe(minifyCSS())
         .pipe(gulp.dest('./public/build/css/'));
+
+    gulp.src('./public/fonts/*')
+        .pipe(gulp.dest('./public/build/fonts/'));
 });
 
 gulp.task('watch', [

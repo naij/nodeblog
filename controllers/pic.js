@@ -31,13 +31,13 @@ exports.getPictures = function (req, res, next) {
             for (var i = 0; i < doc.length; i++) {
                 var temp = doc[i].toJSON();
                 temp['uploadTime'] = util.formatDate(temp.uploadTime);
+                temp.picPath = config.upyunPath + temp.picPath;
                 list.push(temp);
             }
 
             res.json({
                 data: {
-                    list: list,
-                    pathPrefix: config.upyun_path
+                    list: list
                 },
                 info: {
                     ok: true,
