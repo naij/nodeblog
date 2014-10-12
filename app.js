@@ -34,7 +34,9 @@ app.use(session({
         redisHost: config.redisHost,
         redisPort: config.redisPort
     }),
-    secret: config.sessionSecret
+    secret: config.sessionSecret,
+    resave: true,
+    saveUninitialized: true
 }));
 app.use(function (req, res, next) {
     res.locals.config = config;
