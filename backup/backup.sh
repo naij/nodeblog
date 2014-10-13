@@ -55,7 +55,7 @@ fi
 # Get the directory the script is being run from
 SCRIPT_DIR=$(dirname $0)
 # Store the current date in YYYY-mm-DD-HHMMSS
-DATE=$(date -u "+%F-%H%M%S")
+DATE=$(date "+%F-%H%M%S")
 FILE_NAME="backup-$DATE"
 ARCHIVE_NAME="$FILE_NAME.tar.gz"
 BACKUP_DIR="$SCRIPT_DIR/backup/"
